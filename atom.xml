@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>进进吖</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-13T13:10:09.898Z</updated>
+  <updated>2019-07-14T15:48:04.126Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Html-css</title>
+    <link href="http://yoursite.com/2019/07/14/html-Css/"/>
+    <id>http://yoursite.com/2019/07/14/html-Css/</id>
+    <published>2019-07-14T14:58:12.373Z</published>
+    <updated>2019-07-14T15:48:04.126Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="1-什么是标签语义化及其优点"><a href="#1-什么是标签语义化及其优点" class="headerlink" title="1.什么是标签语义化及其优点"></a>1.什么是标签语义化及其优点</h4><p>合理的标签做合理的事情<br><strong>优点:</strong></p><p>便于浏览器、搜索引擎的解析<br>便于阅读源代码的人对网站进行维护和理解<br>在没有css的情况下，页面的内容结构和代码结构更加美观</p><h4 id="2-H5中的新标签"><a href="#2-H5中的新标签" class="headerlink" title="2.H5中的新标签"></a>2.H5中的新标签</h4><p>1 <header>头部</header> <footer>尾部</footer><br>2 <nav>导航</nav> <cavas>动画</cavas><br>3 <audio>音频</audio> <video>视频</video></p><h4 id="3-本地存储方式"><a href="#3-本地存储方式" class="headerlink" title="3.本地存储方式"></a>3.本地存储方式</h4><p><strong>cookies: 存储浏览器端的数据，可以设置cookie的到期时间,如果不设置时间,则在浏览器关闭时关闭</strong><br><strong>session: 存储服务端的数据,session存储特定的用户回话所需要的属性和配置信息</strong></p><p><strong>两者的区别:</strong></p><blockquote><p>cookies 存储于浏览器端的数据，sessions存储于服务端的数据<br>cookies 安全性较低，cookies存储的信息为4k<br>session存储重要信息,如果sessions存储的信息过大，会占用服务器的性能</p></blockquote><p><strong>localStoage 本地存储方式 (永久) 除非主动清除,否则一直存在</strong><br><strong>sessionStorage 本地存储方式 (临时) 浏览器窗口关闭,则失效</strong></p><blockquote><p>1.localStoage.getItem(‘name’) ‘获取’ name 的值<br>2.localStoage.setItem(‘name’) ‘设置’ name 的值<br>3.localStoage.removeItem(‘name’) ‘删除’ name 的值</p></blockquote><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><p><strong>css 盒模型</strong></p><p>box-sizing:border-box<br>box-sezing:content-box<br><strong>两者的区别:</strong></p><p>  1 border-box: 整个盒子的宽、高、包括 ‘margin’ ‘padding’ ‘border’<br>  2 content-box: 整个盒子的宽、高、’不包含’上面的元素</p><p><img src="https://user-gold-cdn.xitu.io/2019/3/17/1698bdd0101065ad?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="css 盒模型"><span class="img-alt">css 盒模型</span></p><p><strong>css 常用选择器</strong></p><blockquote><p>1.通配符：*<br>2.ID 选择器：#ID<br>3.类选择器：.class<br>4.元素选择器：p、a 等……<br>5.后代选择器：p span、div a 等……<br>6.伪类选择器：a:hover 等……<br>7.属性选择器：input[type=”text”] 等……<br>8.子元素选择器：li:firth-child、p:nth-child(1)</p></blockquote><p><strong>css 选择器的权重</strong></p><p><strong><em>1 ‘!important -&gt; 行内样式 -&gt; #id -&gt; .class -&gt; 元素和伪元素 -&gt; * -&gt; 继承 -&gt; 默认’</em></strong></p><p><strong>css 新特性</strong></p><blockquote><p>1.transition：过渡<br>2.transform：旋转、缩放、移动或者倾斜<br>3.animation：动画<br>4.gradient：渐变<br>5.shadow：阴影<br>6.border-radius：圆角<br>7.css 引入方式以及优先级</p></blockquote><p><strong><em>在引用 CSS 上，分为四种形式：行内样式、内嵌式、链接式以及导入式</em></strong></p><p><strong><em>在优先级上,行内样式 &gt; 链接式 &gt; 内嵌式 &gt; @import 导入式。</em></strong></p><p><strong>less 与 sass stylus 的区别</strong></p><p><strong><em>变量声明 :</em></strong></p><blockquote><p>1.Sass声明变量方式 $ 开头, 后面紧跟着变量值和变量名,变量名和变量值需要使用冒号:分隔开<br>2.Less 声明变量方式 @ 开头, 其余等同于Sass<br>3.stylus 变量声明没有任何限定,结尾分号可有可无, 变量名和变量值中间必须用 = 等号</p></blockquote><p><strong>作用域</strong></p><blockquote><p>Sass 作用域最差,不存在全局变量的概念, 注意相同的变量名字<br>Less 近期更新, 可以定义全局变量<br>与 Sass 相同,变量值输出是根据最近声明的一次定义,每次引用最近的定义</p></blockquote><p><strong>嵌套</strong></p><p><strong><em>三种都有设计嵌套关系,使用上没有任何区别,引用父级选择器的标记 &amp; 也相同</em></strong></p><p><strong>继承</strong></p><p><strong><em>Sass 和 Stylus 相似,能把一个选择器上的内容继承到另一个选择器上,使用『@extend』开始,后面接被继承的选择器</em></strong></p><p><strong>导入 import</strong></p><blockquote><p>‘Sass 中只存在使用 url() 表达式 引入式进行变量插值’<br>$device: mobile;<br>@import url(styles.#{$device}.css);</p></blockquote><blockquote><p>‘Less 可以在字符串中插值’<br>@device: mobile;<br>@import “styles.@{device}.css”;</p></blockquote><p><strong><em>‘Stylus 只能利用字符串拼接实现’</em></strong></p><blockquote><p>device = “mobile”<br>@import “styles.” + device + “.css”<br>Sass 和 less 语法相对于严谨,Stylus相对于自由,less表现方式更像是css,上手比较容易<br>Sass 和 stylus 具有逻辑处理方式 例如: 条件/循环 less需要通过when进行处理</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;HTML&quot;&gt;&lt;a href=&quot;#HTML&quot; class=&quot;headerlink&quot; title=&quot;HTML&quot;&gt;&lt;/a&gt;HTML&lt;/h3&gt;&lt;h4 id=&quot;1-什么是标签语义化及其优点&quot;&gt;&lt;a href=&quot;#1-什么是标签语义化及其优点&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
