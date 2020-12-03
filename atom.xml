@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-01T06:46:42.738Z</updated>
+  <updated>2020-12-03T03:45:10.102Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机网络 - HTTP</title>
+    <link href="http://yoursite.com/2020/12/02/HTTP/"/>
+    <id>http://yoursite.com/2020/12/02/HTTP/</id>
+    <published>2020-12-02T04:15:13.613Z</published>
+    <updated>2020-12-03T03:45:10.102Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="HTTP-7层协议"><a href="#HTTP-7层协议" class="headerlink" title="HTTP 7层协议"></a>HTTP 7层协议</h3><blockquote><p>7 应用层 例如：(<strong>DNS和HTTP</strong>)<br>6 表示层 主要功能：转换，压缩和加密。<br>5 会话层 可以把“会话”理解为两个应用程序进程之间的逻辑连接，两个应用程序通过这个逻辑连接在一段时间内交换数据。会话层的作用就是为创建、管理和终止会话提供必要的方法<br>4 传输层 例如：<strong>TCP</strong> 提供数据传输的服务<br>3    网络层 例如：<strong>IP</strong>、地址、路由、分段和重组<br>2 数据链路层 例如：<strong>以太网</strong>、令牌环、HDLC、帧中继、ISDN、ATM、IEEE 802.11、FDDI、PPP<br>1 物理层 例如：线路、无线电、光纤、信鸽</p></blockquote><h3 id="HTTP-发展史"><a href="#HTTP-发展史" class="headerlink" title="HTTP 发展史"></a>HTTP 发展史</h3><h4 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h4><blockquote><p>Http 0.9 只是传输体积很小的文件, <strong>没有http请求体和请求头</strong> ,服务器也不返回头信息;</p></blockquote><h4 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h4><blockquote><p>Http 1.0 加入了请求头和响应头、支持多种多种请求类型、状态码、用户代理、Cache 机制<br>GET POST HEAD</p></blockquote><h4 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h4><blockquote><p>改进了http1.0<strong>每次HTTP通讯</strong>的时候都要进行Tcp连接，传输 HTTP 数据再断开 TCP 连接的尴尬局面，支持持续性连接，只要浏览器或者服务器没有明确断开连接，则一直保持连接的形式（默认开始keep-alive）让一个 TCP 连接能重复发送/接收多次 HTTP 请求<br>如果tcp通道中的某个请求因为某些原因没有及时返回，会堵塞后面的所有请求(<strong>队头堵塞</strong>),<strong>http1.1采用管线化</strong>来处理队头堵塞问题;</p></blockquote><blockquote><p><strong>管线化</strong><br>管线化机制必须通过长连接的形式来实现，HTTP1.1;<br>1.0实现 请求1 -&gt; 响应1 -&gt; 请求2 -&gt; 响应2;<br>1.1实现 请求1 -&gt; 请求2 -&gt; 请求3 -&gt; 响应1 -&gt; 响应2 -&gt; 响应3;<br><strong>两者的区别:</strong><br>http1.0 在于顺序请求，只有在请求1的响应收到之后，才会发送请求2,<br>管线化不需要等待上一次请求得到响应就可以进行下一次请求。实现并行发送请求</p></blockquote><blockquote><p>http1.0一个服务器只能绑定一个域名，<strong>而http1.1在request headers 中添加host字段</strong>,表示当前域名地址，服务器可以根据不同的 Host 值做不同的处理。这样一台物理主机就可以绑定多个虚拟主机，每个虚拟主机都有自己单独的域名。</p></blockquote><h4 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP/2.0"></a>HTTP/2.0</h4><blockquote><p>解决队头堵塞问题，实现资源的并行请求;<br>http2.0使用头部压缩,压缩消息头，减少传输数据的大小;<br>服务器推送：服务端能够主动把资源推送给客户端;<br>HTTP2 可以对比较紧急的请求设置一个较高的优先级，服务器在收到这样的请求后，可以优先处理。</p></blockquote><h4 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h4><blockquote><p>GET 获取数据 POST 提交/上传数据;<br>GET 请求长度有限制（是web浏览器的限制,不同的浏览器限制的长度不一样）而 POST 并没有;<br>GET 请求会被浏览器主动保留下来（历史记录），而 POST 默认不会</p></blockquote><h4 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h4><blockquote><p>301 永久重定向   302临时重定向   304协商缓存<br>400 前端参数错误   401没有权限   404报错<br>500服务器报错   502服务器正常、访问出错</p></blockquote><h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><blockquote><p>Https = Http + SSL (加密 + 认证 + 完整性验证)<br><strong>非对称加密</strong><br>有两个秘钥：一个公钥、一个私钥。<br>1.服务器将自己的公钥登录至数字认证机构；<br>2.数字认证机构用自己的私钥向服务器的公钥署数字签名并颁发公钥证书(数字认证机构的公钥证书已经植入到浏览器中);<br>3.客户端拿到服务器的公钥证书后，使用数字证书认证机构的公开密钥向数字证书认证机构验证公钥证书的上的签名，确定服务器公钥的正确性；<br>4.使用服务器的公钥将报文加密后发送<br>5.服务器使用私钥将报文解密</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;HTTP-7层协议&quot;&gt;&lt;a href=&quot;#HTTP-7层协议&quot; class=&quot;headerlink&quot; title=&quot;HTTP 7层协议&quot;&gt;&lt;/a&gt;HTTP 7层协议&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;7 应用层 例如：(&lt;strong&gt;DNS和HTTP&lt;/s
+      
+    
+    </summary>
+    
+      <category term="HTTP" scheme="http://yoursite.com/categories/HTTP/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>js new、原型、原型链</title>
