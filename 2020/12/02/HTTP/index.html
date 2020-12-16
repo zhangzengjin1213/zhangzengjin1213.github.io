@@ -55,7 +55,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-12-03T06:54:27.213Z" itemprop="dateUpdated">2020-12-03</time>
+    更新 <time datetime="2020-12-05T07:10:23.619Z" itemprop="dateUpdated">2020-12-05</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -95,10 +95,14 @@
 <p>301 永久重定向   302临时重定向   304协商缓存<br>400 前端参数错误   401没有权限   404报错<br>500服务器报错   502服务器正常、访问出错</p>
 </blockquote>
 <h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><blockquote>
-<p>Https = Http + SSL (加密 + 认证 + 完整性验证)<br><strong>非对称加密</strong><br>有两个秘钥：一个公钥、一个私钥。<br>1.服务器将自己的公钥登录至数字认证机构；<br>2.数字认证机构用自己的私钥向服务器的公钥署数字签名并颁发公钥证书(数字认证机构的公钥证书已经植入到浏览器中);<br>3.客户端拿到服务器的公钥证书后，使用数字证书认证机构的公开密钥向数字证书认证机构验证公钥证书的上的签名，确定服务器公钥的正确性；<br>4.使用服务器的公钥将报文加密后发送<br>5.服务器使用私钥将报文解密</p>
+<p>HTTPS = Http + SSL (加密 + 认证 + 完整性验证)<br>通过MD5、SHA1等算法进行完整性的验证，对方收到数据后也生成相同的算法生成散列值，两者相比较从而进行完整性验证;<br><strong>非对称加密</strong><br>有两个秘钥：一个公钥、一个私钥。<br>1.服务器将自己的公钥登录至数字认证机构；<br>2.数字认证机构用自己的私钥向服务器的公钥署数字签名并颁发公钥证书(数字认证机构的公钥证书已经植入到浏览器中);<br>3.客户端拿到服务器的公钥证书后，使用数字证书认证机构的公开密钥向数字证书认证机构验证公钥证书的上的签名，确定服务器公钥的正确性；<br>4.使用服务器的公钥将报文加密后发送<br>5.服务器使用私钥将报文解密</p>
 </blockquote>
 <blockquote>
-<p>ssl 协议的过程</p>
+<p>SSL 协议<br>SSL是基于TCP来实现的,但是SSL不属于应用层的协议，他是属于传输层和应用层之间的协议<br>Https = Http + SSL</p>
+</blockquote>
+<p><strong>SSL协议握手过程</strong></p>
+<blockquote>
+<p>1、客户端给服务器发送一个消息，信息内容包括：文本内容、客户端支持的加密方式、支持的压缩方法、SSL版本号、客户端生成的随机数;<br>2、服务器收到消息后，也发送一个消息，信息内容包括:文本内容、SSL版本号、服务器生成的随机数、SSL版本号;<br>3、服务器给客户端发送一个报文，报文里面包含于服务器端的公钥；<br>4、服务器发送一个 Server Hello Done, 表示握手建立完成;<br>5、客户端收到握手建立完成的消息后，以Client Key Exchange作为回应,报文中包含通信加密过程中的随机加密串,并且使用收到服务器发送来的公钥来进行加密<br>6、客户端发送Change Cipher Spec报文,该报文告知服务器，接下来的所有请求都会进行加密;<br>7、客户端发送Finish报文，报文中包含连接至今所有报文的整体校验值，用于完整性校验;<br>8、服务器收到客户端发来的Change Cipher Spec报文后，同样也发送Change Cipher Spec报文作为回应<br>9、服务器接收到客户端发来的Finish报文，表示服务端已正确解析客服端发来的整体校验值，SSL握手到此结束;<br>10、开始使用HTTPS协议传输 master secret加密过的数据;<br><img src="https://user-gold-cdn.xitu.io/2018/5/6/1633532f95052afd?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="SSL协议握手过程"><span class="img-alt">SSL协议握手过程</span></p>
 </blockquote>
 
       </div>
