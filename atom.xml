@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-05T07:10:23.619Z</updated>
+  <updated>2020-12-16T15:51:02.351Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue-router(原理解析)</title>
+    <link href="http://yoursite.com/2020/12/11/vueRouter%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2020/12/11/vueRouter原理解析/</id>
+    <published>2020-12-11T06:00:45.257Z</published>
+    <updated>2020-12-16T15:51:02.351Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前端路由实现的两种方式"><a href="#前端路由实现的两种方式" class="headerlink" title="前端路由实现的两种方式"></a>前端路由实现的两种方式</h3><blockquote><p>hash、history<br>目前vue是spa应用，路径切换可以重新渲染组件（也刷新页面）<br>hash的优缺点 样式丑、兼容性好、不需要服务端支持<br>模拟实现方法 window.location.hash = ‘xx’、 事件监听方法是 window.addEventListener(hashchang);<br>history的优缺点 样式美观、兼容性差、需要服务端支持<br>模拟实现方法 window.history.pushState({数据},’标题’,’路径’)  事件监听方法是 window.addEventListener(‘popState’);</p></blockquote><h3 id="Vue-use-是什么？干了那些事情？"><a href="#Vue-use-是什么？干了那些事情？" class="headerlink" title="Vue.use()是什么？干了那些事情？"></a>Vue.use()是什么？干了那些事情？</h3><blockquote><p>Vue.use(vueRouter);<br>plugin 插件<br>options 参数<br>this 指向的是当前的 Vue</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.use = function(plugin,options)&#123; </span><br><span class="line">    plugin.install(this,options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前端路由实现的两种方式&quot;&gt;&lt;a href=&quot;#前端路由实现的两种方式&quot; class=&quot;headerlink&quot; title=&quot;前端路由实现的两种方式&quot;&gt;&lt;/a&gt;前端路由实现的两种方式&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;hash、history&lt;br&gt;目前vue
+      
+    
+    </summary>
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>计算机网络 - HTTP</title>
