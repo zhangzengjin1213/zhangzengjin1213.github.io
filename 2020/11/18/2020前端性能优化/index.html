@@ -55,7 +55,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-11-18T10:16:59.092Z" itemprop="dateUpdated">2020-11-18</time>
+    更新 <time datetime="2020-12-16T15:49:33.455Z" itemprop="dateUpdated">2020-12-16</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -115,10 +115,13 @@
 <blockquote>
 <p><strong>网站部署了CDN</strong><br>1.浏览器将域名解析为IP地址，需要向本地DNS发出请求<br>2.本地服务器依次向根服务器、顶级域名服务器、权限服务器发出请求，得到全局负载均衡（GSLB）的IP地址<br>3.本地服务器再向 GSLB 发送请求, GSLB的主要作用是根据本地DNS的IP判断用户的位置,筛选出距离当前用户最近的本地负载均衡系统（SLB）然后将该SLB的IP地址作为结果返回给本地DNS<br>4.本地DNS 将 SLB的IP地址 发回给浏览器，浏览器向SLB发送请求<br>5.SLB将浏览器请求的资源和地址，选出最优的缓存服务器发回给浏览器<br>6.浏览器再根据SLB发回的地址重定向到缓存服务器<br>7.如果缓存浏览器有浏览器需要的资源，会将资源发回给浏览器，如果没有，就向源服务器请求资源再发给浏览器并缓存在本地<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/67c19972e7dd4ae0840a0f838dd6a017~tplv-k3u1fbpfcp-zoom-1.image" alt="CDN"><span class="img-alt">CDN</span></p>
 </blockquote>
-<h3 id="减少重绘重排"><a href="#减少重绘重排" class="headerlink" title="减少重绘重排"></a>减少重绘重排</h3><h6 id="重绘不一定会发生回流，回流必然发生重绘"><a href="#重绘不一定会发生回流，回流必然发生重绘" class="headerlink" title="重绘不一定会发生回流，回流必然发生重绘"></a>重绘不一定会发生回流，回流必然发生重绘</h6><ul>
+<h3 id="5-减少重绘重排"><a href="#5-减少重绘重排" class="headerlink" title="5.减少重绘重排"></a>5.减少重绘重排</h3><h6 id="重绘不一定会发生回流，回流必然发生重绘"><a href="#重绘不一定会发生回流，回流必然发生重绘" class="headerlink" title="重绘不一定会发生回流，回流必然发生重绘"></a>重绘不一定会发生回流，回流必然发生重绘</h6><ul>
 <li>回流:添加或删除可见的DOM元素、浏览器窗口尺寸改变、内容改变、元素的大小、位置发生变化时,称之为回流;</li>
 <li>重绘:当元素的颜色，背景色发生变化时,称之为重绘;</li>
 </ul>
+<h3 id="6-将-CSS-放在文件头部，JavaScript-文件放在底部"><a href="#6-将-CSS-放在文件头部，JavaScript-文件放在底部" class="headerlink" title="6.将 CSS 放在文件头部，JavaScript 文件放在底部"></a>6.将 CSS 放在文件头部，JavaScript 文件放在底部</h3><blockquote>
+<p>1.所有放在head标签里面的css/js文件都会堵塞渲染，如果文件过大容易造成页面空白，所以需要将js放在底部，等待HTML解析完成后才去加载js<br>2.将css放在头部的原因是：为了避免渲染HTML时没有样式，页面丑陋<br>3.如果将js文件放在头部加载的话，需要将 script 标签加上 defer 属性就可以，异步加载，延迟执行</p>
+</blockquote>
 
       </div>
         <div class="support-author">
