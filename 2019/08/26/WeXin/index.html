@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="进进吖" />
+  <meta name="description" content="进进吖的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  <link rel="dns-prefetch" href="https://widget.daovoice.io">
+  <link rel="dns-prefetch" href="https://widget-static-cdn.daovoice.io">
+  <link rel="dns-prefetch" href="https://im.daovoice.io">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>微信授权、支付、微信分享相关</title>
+  
+  
+    <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="进进吖" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">进进吖</a>
+  <a class="face-img" href="/">
+    <img src="https://static.hufangyun.com/face.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    微信授权、支付、微信分享相关
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-08-26T09:35:11.100Z" itemprop="datePublished">2019-08-26</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2020-03-07T09:35:50.906Z" itemprop="dateUpdated">2020-03-07</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h4 id="微信授权"><a href="#微信授权" class="headerlink" title="微信授权"></a>微信授权</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户授权 获取code</span><br><span class="line">export function 接口名字(code) &#123;</span><br><span class="line">	return http(&#123;</span><br><span class="line">		url: 接口地址 + &#x27;?code=&#x27; + code,</span><br><span class="line">		method: &#x27;get&#x27;,</span><br><span class="line">		data: null</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="限制在微信浏览器中打开"><a href="#限制在微信浏览器中打开" class="headerlink" title="限制在微信浏览器中打开"></a>限制在微信浏览器中打开</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">限制用户在微信浏览器中打开</span><br><span class="line">let rediretUrl = &#x27;项目线上地址&#x27;;</span><br><span class="line">    window.location.href = `线上地址/接口地址?后台参数=$&#123;rediretUrl&#125;`;</span><br></pre></td></tr></table></figure>
+
+<h4 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装并引入微信js-sdk</span><br><span class="line">npm install weixin-js-sdk</span><br><span class="line">import wx from &quot;weixin-js-sdk&quot;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">wexinPay(data, cb, errorCb) &#123;</span><br><span class="line">        //获取后台传入的数据</span><br><span class="line">        let appId = data.appId;</span><br><span class="line">        let timestamp = data.timeStamp;</span><br><span class="line">        let nonceStr = data.nonceStr;</span><br><span class="line">        let signature = data.signature;</span><br><span class="line">        let packages = data.package;</span><br><span class="line">        let paySign = data.paySign;</span><br><span class="line">        let signType = data.signType;</span><br><span class="line">        //发起微信支付</span><br><span class="line">        wx.config(&#123;</span><br><span class="line">            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span><br><span class="line">            appId: appId, // 必填，公众号的唯一标识</span><br><span class="line">            timestamp: timestamp, // 必填，生成签名的时间戳</span><br><span class="line">            nonceStr: nonceStr, // 必填，生成签名的随机串</span><br><span class="line">            signature: signature, // 必填，签名，见附录1</span><br><span class="line">            jsApiList: [&#x27;chooseWXPay&#x27;] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2</span><br><span class="line">        &#125;);</span><br><span class="line">        wx.ready(function () &#123;</span><br><span class="line">            wx.chooseWXPay(&#123;</span><br><span class="line">                timestamp: timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符</span><br><span class="line">                nonceStr: nonceStr, // 支付签名随机串，不长于 32 位</span><br><span class="line">                package: packages, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）</span><br><span class="line">                signType: signType, // 签名方式，默认为&#x27;SHA1&#x27;，使用新版支付需传入&#x27;MD5&#x27;</span><br><span class="line">                paySign: paySign, // 支付签名</span><br><span class="line">                success: function (res) &#123;</span><br><span class="line">                    // 支付成功后的回调函数</span><br><span class="line">                    cb(res);</span><br><span class="line">                &#125;,</span><br><span class="line">                fail: function (res) &#123;</span><br><span class="line">                    //失败回调函数</span><br><span class="line">                    errorCb(res);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        wx.error(function (res) &#123;</span><br><span class="line">            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。</span><br><span class="line">            /*alert(&quot;config信息验证失败&quot;);*/</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">async 支付接口()&#123;</span><br><span class="line">           let params = &#123;</span><br><span class="line">               &#x27;传入相对应的参数&#x27;</span><br><span class="line">           &#125;</span><br><span class="line">           const response = await 支付接口(params);</span><br><span class="line">           if(&#x27;根据后台返回的判断条件进行判断&#x27;)&#123;</span><br><span class="line">               &#x27;调起微信支付&#x27;</span><br><span class="line">               weixin.wexinPay(</span><br><span class="line">               response.data,</span><br><span class="line">               &#x27;成功回调函数&#x27;</span><br><span class="line">                   res =&gt; &#123;  </span><br><span class="line">                       this.$router.push(&#123;</span><br><span class="line">                           &#x27;调转支付成功页面&#x27;</span><br><span class="line">                           path: &quot;/paySuccess&quot;,</span><br><span class="line">                           &#x27;金额&#x27;</span><br><span class="line">                           query:&#123;</span><br><span class="line">                               price: this.price</span><br><span class="line">                           &#125;</span><br><span class="line">                       &#125;); </span><br><span class="line">                   &#125;,</span><br><span class="line">                   &#x27;取消回调函数&#x27;</span><br><span class="line">                   res =&gt; &#123;  </span><br><span class="line">                       Toast(&#x27;取消支付&#x27;);</span><br><span class="line">                   &#125;,</span><br><span class="line">                   &#x27;失败回调函数&#x27;</span><br><span class="line">                   res =&gt; &#123;  </span><br><span class="line">                       Toast(&#x27;支付失败&#x27;);</span><br><span class="line">                   &#125;,</span><br><span class="line">               )</span><br><span class="line">           &#125;else&#123;</span><br><span class="line">               &#x27;后台返回的错误信息&#x27;</span><br><span class="line">               Toast(response.message);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="微信分享"><a href="#微信分享" class="headerlink" title="微信分享"></a>微信分享</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">wexinShare: function(data, opstion)&#123;</span><br><span class="line">       wx.config(&#123;</span><br><span class="line">           debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span><br><span class="line">           appId: &#x27;&#x27;, // 必填，公众号的唯一标识</span><br><span class="line">           timestamp: data.timestamp, // 必填，生成签名的时间戳</span><br><span class="line">           nonceStr: data.noncestr, // 必填，生成签名的随机串</span><br><span class="line">           signature: data.signature, // 必填，签名，见附录1</span><br><span class="line">           jsApiList: [</span><br><span class="line">               &#x27;updateAppMessageShareData&#x27;,</span><br><span class="line">               &#x27;updateTimelineShareData&#x27;,</span><br><span class="line">           ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2</span><br><span class="line">       &#125;);</span><br><span class="line">       wx.ready(function () &#123;</span><br><span class="line">           //分享给朋友</span><br><span class="line">           wx.updateAppMessageShareData(&#123;</span><br><span class="line">               title: opstion.title, // 分享标题</span><br><span class="line">               link: opstion.link, // 分享链接</span><br><span class="line">               imgUrl: opstion.imgUrl, // 分享图标</span><br><span class="line">               desc: opstion.dec, // 分享描述</span><br><span class="line">               success () &#123;</span><br><span class="line">                   opstion.success()</span><br><span class="line">               &#125;,</span><br><span class="line">               cancel () &#123;</span><br><span class="line">                   opstion.error()</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;);</span><br><span class="line">           //分享到朋友圈</span><br><span class="line">           wx.updateTimelineShareData(&#123;</span><br><span class="line">               title: opstion.title, // 分享标题</span><br><span class="line">               link: opstion.link, // 分享链接</span><br><span class="line">               imgUrl: opstion.imgUrl, // 分享图标</span><br><span class="line">               desc: opstion.dec, // 分享描述</span><br><span class="line">               success () &#123;</span><br><span class="line">                   opstion.success()</span><br><span class="line">               &#125;,</span><br><span class="line">               cancel () &#123;</span><br><span class="line">                   opstion.error()</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">async 分享接口()&#123;</span><br><span class="line">    &#x27;vue项目，路由没有开启history 模式,也就是你的url上面包含“#”，这个时候要从后端正确获取签名，就需要去掉url上#后面的字符。（url去掉&#x27;#&#x27;hash部分，可用location.href.split(&#x27;#&#x27;)[0]）&#x27;</span><br><span class="line">    let shareUrl = encodeURIComponent(window.location.href.split(&#x27;#&#x27;)[0]);</span><br><span class="line">    let params = &#123;</span><br><span class="line">        strUrl: shareUrl</span><br><span class="line">    &#125;</span><br><span class="line">    let response = await 分享接口(params);</span><br><span class="line">    if (后台判断标识) &#123;</span><br><span class="line">        let opstion = &#123;</span><br><span class="line">            title: this.dubDetail.videoName,</span><br><span class="line">            link: window.location.href,</span><br><span class="line">            imgUrl: this.dubDetail.coverImg,</span><br><span class="line">            dec: this.dubDetail.description,</span><br><span class="line">            success: function () &#123;</span><br><span class="line">                &#x27;此处不需要处理,标语除外&#x27;</span><br><span class="line">            &#125;,</span><br><span class="line">            error: function () &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        weixin.wexinShare(response.data, opstion);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        Toast(response.message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: 'd0c6de133269f4b5e478',
+    clientSecret: '553bce00ff56a439112749cdde0939a6ebc77d32',
+    repo: 'https://zhangzengjin1213.github.io/',
+    owner: 'zhangzengjin1213',
+    admin: ['zhangzengjin1213'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2019-04 进进的博客 京ICP备1314520号</p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="进进吖" />
+  <meta name="description" content="进进吖的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  <link rel="dns-prefetch" href="https://widget.daovoice.io">
+  <link rel="dns-prefetch" href="https://widget-static-cdn.daovoice.io">
+  <link rel="dns-prefetch" href="https://im.daovoice.io">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>common-Js</title>
+  
+  
+    <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="进进吖" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">进进吖</a>
+  <a class="face-img" href="/">
+    <img src="https://static.hufangyun.com/face.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    common-Js
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-09-17T02:02:04.020Z" itemprop="datePublished">2019-09-17</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2019-09-17T08:35:00.635Z" itemprop="dateUpdated">2019-09-17</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h3 id="时间转换"><a href="#时间转换" class="headerlink" title="时间转换"></a>时间转换</h3><ul>
+<li>param date 要格式化的日期，不传时默认当前时间，也可以是一个时间戳</li>
+<li>param fmt 目标字符串格式，支持的字符有：y,M,d,q,w,H,h,m,S，默认：yyyy-MM-dd HH:mm:ss</li>
+<li>@return 返回格式化后的日期字符串</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">formatDate: function (date, fmt) &#123;</span><br><span class="line">      if (!date) &#123;</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">      date = date == undefined ? new Date() : date;</span><br><span class="line">      date = typeof date == &#x27;number&#x27; ? new Date(date) : date;</span><br><span class="line">      fmt = fmt || &#x27;yyyy-MM-dd HH:mm:ss&#x27;;</span><br><span class="line">      var obj = &#123;</span><br><span class="line">        &#x27;y&#x27;: date.getFullYear(),    年份，注意必须用getFullYear</span><br><span class="line">        &#x27;M&#x27;: date.getMonth() + 1,   月份，注意是从0-11</span><br><span class="line">        &#x27;d&#x27;: date.getDate(),        日期</span><br><span class="line">        &#x27;q&#x27;: Math.floor((date.getMonth() + 3) / 3),  季度</span><br><span class="line">        &#x27;w&#x27;: date.getDay(),         星期，注意是0-6</span><br><span class="line">        &#x27;H&#x27;: date.getHours(),       24小时制</span><br><span class="line">        &#x27;h&#x27;: date.getHours() % 12 == 0 ? 12 : date.getHours() % 12,  12小时制</span><br><span class="line">        &#x27;m&#x27;: date.getMinutes(),     分钟</span><br><span class="line">        &#x27;s&#x27;: date.getSeconds(),     秒</span><br><span class="line">        &#x27;S&#x27;: date.getMilliseconds() 毫秒</span><br><span class="line">      &#125;;</span><br><span class="line">      var week = [&#x27;天&#x27;, &#x27;一&#x27;, &#x27;二&#x27;, &#x27;三&#x27;, &#x27;四&#x27;, &#x27;五&#x27;, &#x27;六&#x27;];</span><br><span class="line">      for (var i in obj) &#123;</span><br><span class="line">        fmt = fmt.replace(new RegExp(i + &#x27;+&#x27;, &#x27;g&#x27;), function (m) &#123;</span><br><span class="line">          var val = obj[i] + &#x27;&#x27;;</span><br><span class="line">          if (i == &#x27;w&#x27;) return (m.length &gt; 2 ? &#x27;星期&#x27; : &#x27;周&#x27;) + week[val];</span><br><span class="line">          for (var j = 0, len = val.length; j &lt; m.length - len; j++) val = &#x27;0&#x27; + val;</span><br><span class="line">          return m.length == 1 ? val : val.substring(val.length - m.length);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">      return fmt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将字符串解析成日期"><a href="#将字符串解析成日期" class="headerlink" title="将字符串解析成日期"></a>将字符串解析成日期</h3><ul>
+<li>@param str 输入的日期字符串，如’2014-09-13’</li>
+<li>@param fmt 字符串格式，默认’yyyy-MM-dd’，支持如下：y、M、d、H、m、s、S，不支持w和q</li>
+<li>@returns 解析后的Date类型日期</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">parseDate: function (str, fmt) &#123;</span><br><span class="line">  fmt = fmt || &#x27;yyyy-MM-dd&#x27;;</span><br><span class="line">  var obj = &#123;</span><br><span class="line">    y: 0,</span><br><span class="line">    M: 1,</span><br><span class="line">    d: 0,</span><br><span class="line">    H: 0,</span><br><span class="line">    h: 0,</span><br><span class="line">    m: 0,</span><br><span class="line">    s: 0,</span><br><span class="line">    S: 0</span><br><span class="line">  &#125;;</span><br><span class="line">  fmt.replace(/([^yMdHmsS]*?)(([yMdHmsS])\3*)([^yMdHmsS]*?)/g, function (m, $1, $2, $3, $4, idx, old) &#123;</span><br><span class="line">    str = str.replace(new RegExp($1 + &#x27;(\\d&#123;&#x27; + $2.length + &#x27;&#125;)&#x27; + $4), function (_m, _$1) &#123;</span><br><span class="line">      obj[$3] = parseInt(_$1);</span><br><span class="line">      return &#x27;&#x27;;</span><br><span class="line">    &#125;);</span><br><span class="line">    return &#x27;&#x27;;</span><br><span class="line">  &#125;);</span><br><span class="line">  obj.M--;  月份是从0开始的，所以要减去1</span><br><span class="line">  var date = new Date(obj.y, obj.M, obj.d, obj.H, obj.m, obj.s);</span><br><span class="line">  if (obj.S !== 0) date.setMilliseconds(obj.S);  如果设置了毫秒</span><br><span class="line">  return date;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将一个日期格式化成友好格式，比如，1分钟以内的返回“刚刚”，</li>
+<li>当天的返回时分，当年的返回月日，否则，返回年月日</li>
+<li>@param {Object} date</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">formatDateToFriendly: function (date) &#123;</span><br><span class="line">       date = date || new Date();</span><br><span class="line">       date = typeof date === &#x27;number&#x27; ? new Date(date) : date;</span><br><span class="line">       var now = new Date();</span><br><span class="line">       if ((now.getTime() - date.getTime()) &lt; 60 * 1000) return &#x27;刚刚&#x27;; // 1分钟以内视作“刚刚”</span><br><span class="line">       var temp = this.formatDate(date, &#x27;yyyy年M月d&#x27;);</span><br><span class="line">       if (temp == this.formatDate(now, &#x27;yyyy年M月d&#x27;)) return this.formatDate(date, &#x27;HH:mm&#x27;);</span><br><span class="line">       if (date.getFullYear() == now.getFullYear()) return this.formatDate(date, &#x27;M月d日&#x27;);</span><br><span class="line">       return temp;</span><br><span class="line">     &#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将一段时长转换成友好格式，如：</li>
+<li>147-&gt;“2分27秒”</li>
+<li>1581-&gt;“26分21秒”</li>
+<li>15818-&gt;“4小时24分”</li>
+<li>@param {Object} second</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">formatDurationToFriendly: function (second) &#123;</span><br><span class="line">      if (second &lt; 60) return second + &#x27;秒&#x27;;</span><br><span class="line">      else if (second &lt; 60 * 60) return (second - second % 60) / 60 + &#x27;分&#x27; + second % 60 + &#x27;秒&#x27;;</span><br><span class="line">      else if (second &lt; 60 * 60 * 24) return (second - second % 3600) / 60 / 60 + &#x27;小时&#x27; + Math.round(second % 3600 / 60) + &#x27;分&#x27;;</span><br><span class="line">      return (second / 60 / 60 / 24).toFixed(1) + &#x27;天&#x27;;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将时间转换成MM:SS形式</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">formatTimeToFriendly: function (second) &#123;</span><br><span class="line">     var m = Math.floor(second / 60);</span><br><span class="line">     m = m &lt; 10 ? (&#x27;0&#x27; + m) : m;</span><br><span class="line">     var s = second % 60;</span><br><span class="line">     s = s &lt; 10 ? (&#x27;0&#x27; + s) : s;</span><br><span class="line">     return m + &#x27;:&#x27; + s;</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取-URL-中的参数"><a href="#获取-URL-中的参数" class="headerlink" title="获取 URL 中的参数"></a>获取 URL 中的参数</h3><ul>
+<li>简单实现</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var urlParams = new URLSearchParams(&#x27;?post=1234&amp;action=edit&#x27;);</span><br><span class="line">console.log(urlParams.get(&#x27;action&#x27;));  &quot;edit&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有赖于浏览器环境,window.location.search 是浏览器函数<br>意思是:设置或返回从问号 (?) 开始的 URL（查询部分）。</p>
+</blockquote>
+<ul>
+<li>举个例子： <a target="_blank" rel="noopener" href="http://xuyuechao.top/?a=3&amp;b=5&amp;c=8888">http://xuyuechao.top?a=3&amp;b=5&amp;c=8888</a><blockquote>
+<p>getUrlParams(‘a’) -&gt; 3<br>getUrlParams(‘b’) -&gt; 5<br>getUrlParams(‘c’) -&gt; 8888</p>
+</blockquote>
+</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  function getUrlParams(param)&#123;</span><br><span class="line">   有赖于浏览器环境， window.location.search 是浏览器函数</span><br><span class="line">   意思是:设置或返回从问号 (?) 开始的 URL（查询部分）。       </span><br><span class="line">  var query = window.location.search.substring(1);       </span><br><span class="line">  var vars = query.split(&quot;&amp;&quot;);       </span><br><span class="line">  for (var i=0;i&lt;vars.length;i++) &#123;               </span><br><span class="line">    var pair = vars[i].split(&quot;=&quot;);               </span><br><span class="line">    if(pair[0] == param)&#123;return pair[1];&#125;       </span><br><span class="line">  &#125;       </span><br><span class="line">  return(false);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="手机端判断浏览器类型"><a href="#手机端判断浏览器类型" class="headerlink" title="手机端判断浏览器类型"></a>手机端判断浏览器类型</h3><blockquote>
+<p>目前主要支持 安卓 &amp; 苹果 &amp; ipad &amp; 微信 &amp; 支付宝 &amp; 是否是手机端。</p>
+</blockquote>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  BrowserInfo = &#123;      </span><br><span class="line">  isAndroid: Boolean(navigator.userAgent.match(/android/ig)),      </span><br><span class="line">  isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),      </span><br><span class="line">  isIpad: Boolean(navigator.userAgent.match(/ipad/ig)),      </span><br><span class="line">  isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),      </span><br><span class="line">  isAli: Boolean(navigator.userAgent.match(/AlipayClient/ig)),</span><br><span class="line">  isPhone: Boolean(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组降维"><a href="#数组降维" class="headerlink" title="数组降维"></a>数组降维</h3><ul>
+<li>二维数组</li>
+</ul>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [ [1], [2], [3] ]</span><br><span class="line">arr = Array.prototype.concat.apply([], arr);  [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>多维数组降维<blockquote>
+<p>flat 有兼容性问题，手机端问题不大。浏览器端不兼容 edge。填 Infinity 可展开任意深度的数组<br>flat 默认值为 1。</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 2, [3], [[4]]]</span><br><span class="line">arr = arr.flat(3)  [1, 2, 3, 4] </span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flat() 方法会移除数组中的空项:</span><br><span class="line">let arr4 = [1, 2, , 4, 5];</span><br><span class="line">arr4.flat();</span><br><span class="line">[1, 2, 4, 5]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>或者<blockquote>
+<p>反嵌套一层数组</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [1, 2, [3, 4]];</span><br><span class="line">arr1.flat();</span><br><span class="line">arr1.reduce((acc, val) =&gt; acc.concat(val), []);// [1, 2, 3, 4]</span><br></pre></td></tr></table></figure>
+<p>或者使用结构赋值</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const flatSingle = arr =&gt; [].concat(...arr);</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><blockquote>
+<p>使用变量 a 拷贝对象 b，改变 a 中的值 b 中的值也会跟着改变，这叫做浅拷贝。要想让 a 独立于 b 就需要深拷贝</p>
+</blockquote>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function deepClone() &#123;</span><br><span class="line">  return JSON.parse(JSON.stringify(obj))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>JSON 不支持函数和undefined </p>
+</blockquote>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><ul>
+<li>防抖</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  function debounce(func, wait) &#123;</span><br><span class="line">    let timeout;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        let context = this;</span><br><span class="line">        let args = arguments;</span><br><span class="line"></span><br><span class="line">        if (timeout) clearTimeout(timeout);</span><br><span class="line">        </span><br><span class="line">        timeout = setTimeout(() =&gt; &#123;</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>节流</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  function throttle(func, wait) &#123;</span><br><span class="line">    let previous = 0;</span><br><span class="line">    return function() &#123;</span><br><span class="line">        let now = Date.now();</span><br><span class="line">        let context = this;</span><br><span class="line">        let args = arguments;</span><br><span class="line">        if (now - previous &gt; wait) &#123;</span><br><span class="line">            func.apply(context, args);</span><br><span class="line">            previous = now;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h3 id="获取数组极值"><a href="#获取数组极值" class="headerlink" title="获取数组极值"></a>获取数组极值</h3>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  function smallest(array)&#123;                           </span><br><span class="line">  return Math.min.apply(Math, array);             </span><br><span class="line">&#125;                                                 </span><br><span class="line">  function largest(array)&#123;                            </span><br><span class="line">  return Math.max.apply(Math, array);             </span><br><span class="line">&#125;  </span><br><span class="line">smallest([0, 1, 2.2, 3.3]);  0</span><br><span class="line">largest([0, 1, 2.2, 3.3]);  3.3</span><br><span class="line"></span><br><span class="line">let list = [1, 2, 3, 4, 5]</span><br><span class="line">Math.max(...list)  5</span><br><span class="line">Math.min(...list)  1</span><br></pre></td></tr></table></figure>
+
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: 'd0c6de133269f4b5e478',
+    clientSecret: '553bce00ff56a439112749cdde0939a6ebc77d32',
+    repo: 'https://zhangzengjin1213.github.io/',
+    owner: 'zhangzengjin1213',
+    admin: ['zhangzengjin1213'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2019-04 进进的博客 京ICP备1314520号</p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

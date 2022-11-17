@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="进进吖" />
+  <meta name="description" content="进进吖的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  <link rel="dns-prefetch" href="https://widget.daovoice.io">
+  <link rel="dns-prefetch" href="https://widget-static-cdn.daovoice.io">
+  <link rel="dns-prefetch" href="https://im.daovoice.io">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>JavaScript-Array</title>
+  
+  
+    <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="进进吖" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">进进吖</a>
+  <a class="face-img" href="/">
+    <img src="https://static.hufangyun.com/face.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    JavaScript-Array
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-08-01T06:06:06.875Z" itemprop="datePublished">2019-08-01</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2019-08-01T10:12:17.848Z" itemprop="dateUpdated">2019-08-01</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h3 id="JS-数组中的方法"><a href="#JS-数组中的方法" class="headerlink" title="JS 数组中的方法"></a>JS 数组中的方法</h3><h4 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h4><blockquote>
+<p>‘创建一个具有可变数量参数的新数组实例,不会考虑参数的类型和数量’</p>
+</blockquote>
+<p><strong>Array.of() 和 Array 构造函数之间的区别是</strong></p>
+<blockquote>
+<p>Array.of(7) 创建一个具有单个元素7的数组<br>Array(7) 创建一个长度为7的空数组(这里是指有7个空位(empty)的数组,而不是7个undefined的数组)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Array.of(7.0);  [8]</span><br><span class="line">Array(7.0);  [empty × 8]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>当参数为多个,或者单个参数不是数字时,Array.of 与 Array构造器等同。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.of(8.0, 5);  [8, 5]</span><br><span class="line">Array(8.0, 5);  [8, 5]</span><br><span class="line"></span><br><span class="line">Array.of(&#x27;8&#x27;);  [&quot;8&quot;]</span><br><span class="line">Array(&#x27;8&#x27;);  [&quot;8&quot;]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>低版本浏览器不支持,可采用以下方案</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (!Array.of)&#123;</span><br><span class="line">  Array.of = function()&#123;</span><br><span class="line">    return Array.prototype.slice.call(arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h4><blockquote>
+<p>将可以迭代的对象转换成一个新的数组,不改变原对象<br>Array.from 有三个参数()<br>1.想要转换成数组的伪数组对象或可迭代对象<br>2.新数组中的每个元素会执行该回调函数。<br>3.可选参数，执行回调函数 mapFn 时 this 对象。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Array from a String</span><br><span class="line">Array.from(&#x27;foo&#x27;);   </span><br><span class="line">[&quot;f&quot;, &quot;o&quot;, &quot;o&quot;]</span><br><span class="line"></span><br><span class="line">let s = new Set([&#x27;foo&#x27;, window]); </span><br><span class="line">Array.from(s);  </span><br><span class="line">[&quot;foo&quot;, window]</span><br><span class="line"></span><br><span class="line">let m = new Map([[1, 2], [2, 4], [4, 8]]);</span><br><span class="line">Array.from(m);  </span><br><span class="line">[[1, 2], [2, 4], [4, 8]]</span><br><span class="line"></span><br><span class="line">function f() &#123;</span><br><span class="line">  return Array.from(arguments);</span><br><span class="line">&#125;</span><br><span class="line">f(1, 2, 3);</span><br><span class="line"> [1, 2, 3]</span><br><span class="line"></span><br><span class="line"> Array.from([1, 2, 3], x =&gt; x + x);  </span><br><span class="line"> x =&gt; x + x代表这是一个函数，只是省略了其他的定义，这是一种Lambda表达式的写法</span><br><span class="line"> 箭头的意思表示从当前数组中取出一个值，然后自加，并将返回的结果添加到新数组中    </span><br><span class="line"> [2, 4, 6]</span><br><span class="line"></span><br><span class="line"> &#x27;数组中的去重方式&#x27;</span><br><span class="line"></span><br><span class="line"> function combine()&#123; </span><br><span class="line">    let arr = [].concat.apply([], arguments);  没有去重复的新数组 </span><br><span class="line">    return Array.from(new Set(arr));</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">let m = [1, 2, 2], n = [2,3,3]; </span><br><span class="line">console.log(combine(m,n));                   [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;0: &#x27;a&#x27;, 1: &#x27;b&#x27;, 2:&#x27;c&#x27;, length: 3&#125;;</span><br><span class="line">Array.from(obj, function(value, index)&#123;</span><br><span class="line">  console.log(value, index, this, arguments.length);</span><br><span class="line">  return value.repeat(3);  必须指定返回值，否则返回undefined</span><br><span class="line">&#125;, obj);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="http://louiszhai.github.io/docImages/array01.png" alt="Array.from"><span class="img-alt">Array.from</span></p>
+<blockquote>
+<p>生成一个从0到指定数字的新数组，Array.from就可以轻易的做到。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.from(&#123;length: 10&#125;, (v, i) =&gt; i);  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br></pre></td></tr></table></figure>
+
+<h4 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray"></a>Array.isArray</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let a = [];</span><br><span class="line"> 1.基于instanceof</span><br><span class="line">a instanceof Array;</span><br><span class="line"> 2.基于constructor</span><br><span class="line">a.constructor === Array;</span><br><span class="line"> 3.基于Object.prototype.isPrototypeOf</span><br><span class="line">Array.prototype.isPrototypeOf(a);</span><br><span class="line"> 4.基于getPrototypeOf</span><br><span class="line">Object.getPrototypeOf(a) === Array.prototype;</span><br><span class="line"> 5.基于Object.prototype.toString</span><br><span class="line">Object.prototype.toString.apply(a) === &#x27;[object Array]&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>除了Object.prototype.toString外，其它方法都不能正确判断变量的类型。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Array.isArray([]);  true</span><br><span class="line">Array.isArray(&#123;0: &#x27;a&#x27;, length: 1&#125;);  false</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Array.isArray 实现</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (!Array.isArray)&#123;</span><br><span class="line">  Array.isArray = function(arg)&#123;</span><br><span class="line">    return Object.prototype.toString.call(arg) === &#x27;[object Array]&#x27;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="for-of"><a href="#for-of" class="headerlink" title="for of"></a>for of</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[for (i of [1, 2, 3, 4]) i * i] </span><br><span class="line">[1, 4, 9, 16]</span><br><span class="line"></span><br><span class="line">单个if</span><br><span class="line">[for (i of [1, 2, 3, 4]) if (i == 3) i * i]  [9]</span><br><span class="line"> 甚至是多个if</span><br><span class="line">[for (i of [1, 2, 3, 4]) if (i &gt; 2) if (i &lt; 4) i * i]  [9]</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组中改变原数组的方法"><a href="#数组中改变原数组的方法" class="headerlink" title="数组中改变原数组的方法:"></a>数组中改变原数组的方法:</h3><h4 id="pop-删除数组的最后一项，并且返回删除的值，原数组发生改变"><a href="#pop-删除数组的最后一项，并且返回删除的值，原数组发生改变" class="headerlink" title="pop() 删除数组的最后一项，并且返回删除的值，原数组发生改变"></a>pop() 删除数组的最后一项，并且返回删除的值，原数组发生改变</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [&quot;cat&quot;, &quot;dog&quot;, &quot;cow&quot;, &quot;chicken&quot;, &quot;mouse&quot;];</span><br><span class="line">let item = array.pop();</span><br><span class="line">console.log(array);  [&quot;cat&quot;, &quot;dog&quot;, &quot;cow&quot;, &quot;chicken&quot;]</span><br><span class="line">console.log(item);  mouse</span><br></pre></td></tr></table></figure>
+
+<p><strong>类数组对象上的应用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;cat&quot;, 1:&quot;dog&quot;, 2:&quot;cow&quot;, 3:&quot;chicken&quot;, 4:&quot;mouse&quot;, length:5&#125;</span><br><span class="line">let item = Array.prototype.pop.call(o);</span><br><span class="line">console.log(o);  Object &#123;0: &quot;cat&quot;, 1: &quot;dog&quot;, 2: &quot;cow&quot;, 3: &quot;chicken&quot;, length: 4&#125;</span><br><span class="line">console.log(item);  mouse</span><br></pre></td></tr></table></figure>
+
+<p><strong>pop() 应用到对象上</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;cat&quot;, 1:&quot;dog&quot;, 2:&quot;cow&quot;, 3:&quot;chicken&quot;, 4:&quot;mouse&quot;&#125;</span><br><span class="line">let item = Array.prototype.pop.call(o);</span><br><span class="line">console.log(o);  Object &#123;0: &quot;cat&quot;, 1: &quot;dog&quot;, 2: &quot;cow&quot;, 3: &quot;chicken&quot;, 4: &quot;mouse&quot;, length: 0&#125;</span><br><span class="line">console.log(item);  undefined</span><br></pre></td></tr></table></figure>
+
+<h4 id="push-方法添加一个或者多个元素到数组末尾，并且返回数组新的长度"><a href="#push-方法添加一个或者多个元素到数组末尾，并且返回数组新的长度" class="headerlink" title="push()方法添加一个或者多个元素到数组末尾，并且返回数组新的长度"></a>push()方法添加一个或者多个元素到数组末尾，并且返回数组新的长度</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [&quot;football&quot;, &quot;basketball&quot;, &quot;volleyball&quot;, &quot;Table tennis&quot;, &quot;badminton&quot;];</span><br><span class="line">let i = array.push(&quot;golfball&quot;);</span><br><span class="line">console.log(array);  [&quot;football&quot;, &quot;basketball&quot;, &quot;volleyball&quot;, &quot;Table tennis&quot;, &quot;badminton&quot;, &quot;golfball&quot;]</span><br><span class="line">console.log(i);  6</span><br></pre></td></tr></table></figure>
+
+<p><strong>push方法也可以应用到对象上</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;football&quot;, 1:&quot;basketball&quot;&#125;;</span><br><span class="line">let i = Array.prototype.push.call(o, &quot;golfball&quot;);</span><br><span class="line">console.log(o);  Object &#123;0: &quot;golfball&quot;, 1: &quot;basketball&quot;, length: 1&#125;</span><br><span class="line">console.log(i);  1</span><br></pre></td></tr></table></figure>
+
+<h4 id="shift-方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。"><a href="#shift-方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。" class="headerlink" title="shift() 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。"></a>shift() 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let array1 = [1, 2, 3];</span><br><span class="line">let firstElement = array1.shift();</span><br><span class="line">console.log(array1);</span><br><span class="line"> expected output: Array [2, 3]</span><br><span class="line"></span><br><span class="line">console.log(firstElement);</span><br><span class="line"> expected output: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>对于类数组对象</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;a&quot;, 1:&quot;b&quot;, 2:&quot;c&quot;, length:3&#125;;</span><br><span class="line">let item = Array.prototype.shift.call(o);</span><br><span class="line">console.log(o);  Object &#123;0: &quot;b&quot;, 1: &quot;c&quot;, length: 2&#125;</span><br><span class="line">console.log(item);  a</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果类数组对象length属性不存在</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;a&quot;, 1:&quot;b&quot;, 2:&quot;c&quot;&#125;;</span><br><span class="line">let item = Array.prototype.shift.call(o);</span><br><span class="line">console.log(o);  Object &#123;0: &quot;a&quot;, 1: &quot;b&quot;, 2:&quot;c&quot; length: 0&#125;</span><br><span class="line">console.log(item);  undefined</span><br></pre></td></tr></table></figure>
+
+<h4 id="unshift-方法将一个或多个元素添加到数组的开头，并返回该数组的新长度-该方法修改原有数组-。"><a href="#unshift-方法将一个或多个元素添加到数组的开头，并返回该数组的新长度-该方法修改原有数组-。" class="headerlink" title="unshift() 方法将一个或多个元素添加到数组的开头，并返回该数组的新长度(该方法修改原有数组)。"></a>unshift() 方法将一个或多个元素添加到数组的开头，并返回该数组的新长度(该方法修改原有数组)。</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array1 = [1, 2, 3];</span><br><span class="line">console.log(array1.unshift(4, 5));</span><br><span class="line">expected output: 5</span><br><span class="line">console.log(array1);</span><br><span class="line">expected output: Array [4, 5, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+<h4 id="unshift方法传入一个数组"><a href="#unshift方法传入一个数组" class="headerlink" title="unshift方法传入一个数组"></a>unshift方法传入一个数组</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;];</span><br><span class="line">let length = array.unshift([&quot;yellow&quot;]);</span><br><span class="line">console.log(array); // [[&quot;yellow&quot;], &quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]</span><br><span class="line">console.log(length); // 4, 可见数组也能成功插入</span><br></pre></td></tr></table></figure>
+
+<h4 id="类数组的处理方式"><a href="#类数组的处理方式" class="headerlink" title="类数组的处理方式"></a>类数组的处理方式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;red&quot;, 1:&quot;green&quot;, 2:&quot;blue&quot;,length:3&#125;;</span><br><span class="line">let length = Array.prototype.unshift.call(o,&quot;gray&quot;);</span><br><span class="line">console.log(o); // Object &#123;0: &quot;gray&quot;, 1: &quot;red&quot;, 2: &quot;green&quot;, 3: &quot;blue&quot;, length: 4&#125;</span><br><span class="line">console.log(length); // 4</span><br></pre></td></tr></table></figure>
+
+<h4 id="reverse-倒序"><a href="#reverse-倒序" class="headerlink" title="reverse 倒序"></a>reverse 倒序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array = [1,2,3,4,5];</span><br><span class="line">let array2 = array.reverse();</span><br><span class="line"></span><br><span class="line">console.log(array);  [5,4,3,2,1]</span><br><span class="line">console.log(array2===array);  true</span><br></pre></td></tr></table></figure>
+
+<h4 id="sort-方法对数组元素进行排序，并返回这个数组"><a href="#sort-方法对数组元素进行排序，并返回这个数组" class="headerlink" title="sort()方法对数组元素进行排序，并返回这个数组"></a>sort()方法对数组元素进行排序，并返回这个数组</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function compare(a, b)&#123;</span><br><span class="line">  return a-b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="splice-arr-splice-start-deleteCount-item1-item2-…"><a href="#splice-arr-splice-start-deleteCount-item1-item2-…" class="headerlink" title="splice*() arr.splice(start,deleteCount[, item1[, item2[, …]]])"></a>splice*() arr.splice(start,deleteCount[, item1[, item2[, …]]])</h4><blockquote>
+<p>start 起始位置<br>deleteCount 删除个数<br>item 向数组添加的新数值<br>splice() 方法会直接对数组进行修改。<br>返回值:修改后的新数组,原数组发生改变</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">let array = [&quot;apple&quot;,&quot;boy&quot;];</span><br><span class="line">let splices = array.splice(1,1);</span><br><span class="line">console.log(array); // [&quot;apple&quot;]</span><br><span class="line">console.log(splices); // [&quot;boy&quot;] ,可见是从数组下标为1的元素开始删除,并且删除一个元素,由于itemN缺省,故此时该方法只删除元素</span><br><span class="line"></span><br><span class="line">array = [&quot;apple&quot;,&quot;boy&quot;];</span><br><span class="line">splices = array.splice(2,1,&quot;cat&quot;);</span><br><span class="line">console.log(array); // [&quot;apple&quot;, &quot;boy&quot;, &quot;cat&quot;]</span><br><span class="line">console.log(splices); // [], 可见由于start超过数组长度,此时从数组末尾开始添加元素,并且原数组不会发生删除行为</span><br><span class="line"></span><br><span class="line">array = [&quot;apple&quot;,&quot;boy&quot;];</span><br><span class="line">splices = array.splice(-2,1,&quot;cat&quot;);</span><br><span class="line">console.log(array); // [&quot;cat&quot;, &quot;boy&quot;]</span><br><span class="line">console.log(splices); // [&quot;apple&quot;], 可见当start为负值时,是从数组末尾开始的第-start位开始删除,删除一个元素,并且从此处插入了一个元素</span><br><span class="line"></span><br><span class="line">array = [&quot;apple&quot;,&quot;boy&quot;];</span><br><span class="line">splices = array.splice(-3,1,&quot;cat&quot;);</span><br><span class="line">console.log(array); // [&quot;cat&quot;, &quot;boy&quot;]</span><br><span class="line">console.log(splices); // [&quot;apple&quot;], 可见即使-start超出数组长度,数组默认从首位开始删除</span><br><span class="line"></span><br><span class="line">array = [&quot;apple&quot;,&quot;boy&quot;];</span><br><span class="line">splices = array.splice(0,3,&quot;cat&quot;);</span><br><span class="line">console.log(array); // [&quot;cat&quot;]</span><br><span class="line">console.log(splices); // [&quot;apple&quot;, &quot;boy&quot;], 可见当deleteCount大于数组start之后的元素总和时,start及之后的元素都将被删除</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="类数组中的使用"><a href="#类数组中的使用" class="headerlink" title="类数组中的使用"></a>类数组中的使用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;apple&quot;,1:&quot;boy&quot;,length:2&#125;;</span><br><span class="line">let splices = Array.prototype.splice.call(o,1,1);</span><br><span class="line">console.log(o);  Object &#123;0: &quot;apple&quot;, length: 1&#125;, 可见对象o删除了一个属性,并且length-1</span><br><span class="line">console.log(splices);  [&quot;boy&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="不会改变原数组的方法-9个"><a href="#不会改变原数组的方法-9个" class="headerlink" title="不会改变原数组的方法(9个)"></a>不会改变原数组的方法(9个)</h3><blockquote>
+<p>concat、join、slice、toString、toLocateString、indexOf、lastIndexOf、toSource、includes</p>
+</blockquote>
+<h4 id="concat-方法将传入的数组或者元素与原数组合并，组成一个新的数组并返回"><a href="#concat-方法将传入的数组或者元素与原数组合并，组成一个新的数组并返回" class="headerlink" title="concat() 方法将传入的数组或者元素与原数组合并，组成一个新的数组并返回"></a>concat() 方法将传入的数组或者元素与原数组合并，组成一个新的数组并返回</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 2, 3];</span><br><span class="line">let array2 = array.concat(4,[5,6],[7,8,9]);</span><br><span class="line">console.log(array2);  [1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">console.log(array);  [1, 2, 3], </span><br></pre></td></tr></table></figure>
+
+<h4 id="若concat方法中不传入参数，那么将基于原数组浅复制生成一个一模一样的新数组（指向新的地址空间）。"><a href="#若concat方法中不传入参数，那么将基于原数组浅复制生成一个一模一样的新数组（指向新的地址空间）。" class="headerlink" title="若concat方法中不传入参数，那么将基于原数组浅复制生成一个一模一样的新数组（指向新的地址空间）。"></a>若concat方法中不传入参数，那么将基于原数组<strong>浅复制</strong>生成一个一模一样的新数组（指向新的地址空间）。</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array = [&#123;a: 1&#125;];</span><br><span class="line">let array3 = array.concat();</span><br><span class="line">console.log(array3);  [&#123;a: 1&#125;]</span><br><span class="line">console.log(array3 === array);  false</span><br><span class="line">console.log(array[0] === array3[0]);  true，新旧数组第一个元素依旧共用一个同一个对象的引用</span><br></pre></td></tr></table></figure>
+
+<h3 id="join-方法将数组中的所有元素连接成一个字符串。"><a href="#join-方法将数组中的所有元素连接成一个字符串。" class="headerlink" title="join() 方法将数组中的所有元素连接成一个字符串。"></a>join() 方法将数组中的所有元素连接成一个字符串。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [&#x27;We&#x27;, &#x27;are&#x27;, &#x27;Chinese&#x27;];</span><br><span class="line">console.log(array.join());  &quot;We,are,Chinese&quot;</span><br><span class="line">console.log(array.join(&#x27;+&#x27;));  &quot;We+are+Chinese&quot;</span><br><span class="line">console.log(array.join(&#x27;&#x27;));  &quot;WeareChinese&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="类数组的操作"><a href="#类数组的操作" class="headerlink" title="类数组的操作"></a>类数组的操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&quot;We&quot;, 1:&quot;are&quot;, 2:&quot;Chinese&quot;, length:3&#125;;</span><br><span class="line">console.log(Array.prototype.join.call(o,&#x27;+&#x27;)); &quot;We+are+Chinese&quot;</span><br><span class="line">console.log(Array.prototype.join.call(&#x27;abc&#x27;));  &quot;a,b,c&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="slice-方法将数组中一部分元素浅复制存入新的数组对象，并且返回这个数组对象。"><a href="#slice-方法将数组中一部分元素浅复制存入新的数组对象，并且返回这个数组对象。" class="headerlink" title="slice() 方法将数组中一部分元素浅复制存入新的数组对象，并且返回这个数组对象。"></a>slice() 方法将数组中一部分元素浅复制存入新的数组对象，并且返回这个数组对象。</h3><blockquote>
+<p>arr.slice([start[, end]])<br>start 指定复制开始位置的索引<br>end如果有值则表示复制结束位置的索引（不包括此位置）<br>start为负数 原数组中的倒数第start个元素到最后一个元素（包含最后一个元素）<br>slice方法参数为空时，同concat方法一样，都是浅复制生成一个新数组。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;,&quot;four&quot;, &quot;five&quot;];</span><br><span class="line">console.log(array.slice());  [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;,&quot;four&quot;, &quot;five&quot;]</span><br><span class="line">console.log(array.slice(2,3));  [&quot;three&quot;]</span><br></pre></td></tr></table></figure>
+
+<h4 id="浅复制-是指当对象的被复制时，只是复制了对象的引用，指向的依然是同一个对象"><a href="#浅复制-是指当对象的被复制时，只是复制了对象的引用，指向的依然是同一个对象" class="headerlink" title="浅复制 是指当对象的被复制时，只是复制了对象的引用，指向的依然是同一个对象"></a>浅复制 是指当对象的被复制时，只是复制了对象的引用，指向的依然是同一个对象</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array = [&#123;color:&quot;yellow&quot;&#125;, 2, 3];</span><br><span class="line">let array2 = array.slice(0,1);</span><br><span class="line">console.log(array2);  [&#123;color:&quot;yellow&quot;&#125;]</span><br><span class="line">array[0][&quot;color&quot;] = &quot;blue&quot;;</span><br><span class="line">console.log(array2);  [&#123;color:&quot;bule&quot;&#125;]</span><br></pre></td></tr></table></figure>
+<p><strong>slice是浅复制，复制到的对象是个引用，改变原数组array的值，array2也随之改变。</strong></p>
+<p><strong>数组的最后一项元素</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log([1,2,3].slice(-1)); [3]</span><br></pre></td></tr></table></figure>
+
+<h4 id="类数组中的尝试"><a href="#类数组中的尝试" class="headerlink" title="类数组中的尝试"></a>类数组中的尝试</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&#123;&quot;color&quot;:&quot;yellow&quot;&#125;, 1:2, 2:3, length:3&#125;;</span><br><span class="line">let o2 = Array.prototype.slice.call(o,0,1);</span><br><span class="line">console.log(o2); [&#123;color:&quot;yellow&quot;&#125;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="toString-返回值经调用-join-方法连接（由逗号隔开）组成-返回数组的字符串形式"><a href="#toString-返回值经调用-join-方法连接（由逗号隔开）组成-返回数组的字符串形式" class="headerlink" title="toString() 返回值经调用 join() 方法连接（由逗号隔开）组成,返回数组的字符串形式"></a>toString() 返回值经调用 join() 方法连接（由逗号隔开）组成,返回数组的字符串形式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;];</span><br><span class="line">let str = array.toString();</span><br><span class="line">console.log(str);  Jan,Feb,Mar,Apr</span><br></pre></td></tr></table></figure>
+
+<h3 id="indexOf-方法用于查找元素在数组中第一次出现时的索引，如果没有，则返回-1"><a href="#indexOf-方法用于查找元素在数组中第一次出现时的索引，如果没有，则返回-1" class="headerlink" title="indexOf() 方法用于查找元素在数组中第一次出现时的索引，如果没有，则返回-1"></a>indexOf() 方法用于查找元素在数组中第一次出现时的索引，如果没有，则返回-1</h3><blockquote>
+<p>Index 为开始查找的位置，缺省默认为0。如果超出数组长度，则返回-1。如果为负值，假设数组长度为length，则从数组的第 length + Index项开始往数组末尾查找，如果length + Index&lt;0 则整个数组都会被查找。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">indexOf使用严格相等（即使用 === 去匹配数组中的元素）。</span><br><span class="line">let array = [&#x27;abc&#x27;, &#x27;def&#x27;, &#x27;ghi&#x27;,&#x27;123&#x27;];</span><br><span class="line">console.log(array.indexOf(&#x27;def&#x27;));  1</span><br><span class="line">console.log(array.indexOf(&#x27;def&#x27;,-1));  -1 此时表示从最后一个元素往后查找,因此查找失败返回-1</span><br><span class="line">console.log(array.indexOf(&#x27;def&#x27;,-4));  1 由于4大于数组长度,此时将查找整个数组,因此返回1</span><br><span class="line">console.log(array.indexOf(123));  -1, 由于是严格匹配,因此并不会匹配到字符串&#x27;123&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="indexOf-可以处理类数组对象"><a href="#indexOf-可以处理类数组对象" class="headerlink" title="indexOf 可以处理类数组对象"></a>indexOf 可以处理类数组对象</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&#x27;abc&#x27;, 1:&#x27;def&#x27;, 2:&#x27;ghi&#x27;, length:3&#125;;</span><br><span class="line">console.log(Array.prototype.indexOf.call(o,&#x27;ghi&#x27;,-4));</span><br></pre></td></tr></table></figure>
+
+<h3 id="lastIndexOf-方法用于查找元素在数组中最后一次出现时的索引，如果没有，则返回-1"><a href="#lastIndexOf-方法用于查找元素在数组中最后一次出现时的索引，如果没有，则返回-1" class="headerlink" title="lastIndexOf() 方法用于查找元素在数组中最后一次出现时的索引，如果没有，则返回-1"></a>lastIndexOf() 方法用于查找元素在数组中最后一次出现时的索引，如果没有，则返回-1</h3><h3 id="includes-ES7-用来判断当前数组是否包含某个指定的值，如果是，则返回-true，否则返回-false。"><a href="#includes-ES7-用来判断当前数组是否包含某个指定的值，如果是，则返回-true，否则返回-false。" class="headerlink" title="includes(ES7) 用来判断当前数组是否包含某个指定的值，如果是，则返回 true，否则返回 false。"></a>includes(ES7) 用来判断当前数组是否包含某个指定的值，如果是，则返回 true，否则返回 false。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let array = [-0, 1, 2];</span><br><span class="line">console.log(array.includes(+0));  true</span><br><span class="line">console.log(array.includes(1));  true</span><br><span class="line">console.log(array.includes(2,-4));  true</span><br></pre></td></tr></table></figure>
+
+<p><strong>唯一的区别就是includes能够发现NaN，而indexOf不能。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let array = [NaN];</span><br><span class="line">console.log(array.includes(NaN));  true</span><br><span class="line">console.log(arra.indexOf(NaN)&gt;-1);  false</span><br></pre></td></tr></table></figure>
+
+<h4 id="类数组中使用"><a href="#类数组中使用" class="headerlink" title="类数组中使用"></a>类数组中使用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:&#x27;a&#x27;, 1:&#x27;b&#x27;, 2:&#x27;c&#x27;, length:3&#125;;</span><br><span class="line">let bool = Array.prototype.includes.call(o, &#x27;a&#x27;);</span><br><span class="line">console.log(bool);  true</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历方法（12个）"><a href="#遍历方法（12个）" class="headerlink" title="遍历方法（12个）"></a>遍历方法（12个）</h3><blockquote>
+<p>基于ES6，不会改变自身的方法一共有12个，分别为forEach、every、some、filter、map、reduce、reduceRight 以及ES6新增的方法entries、find、findIndex、keys、values。</p>
+</blockquote>
+<h4 id="forEach-方法指定数组的每项元素都执行一次传入的函数，返回值为undefined。"><a href="#forEach-方法指定数组的每项元素都执行一次传入的函数，返回值为undefined。" class="headerlink" title="forEach() 方法指定数组的每项元素都执行一次传入的函数，返回值为undefined。"></a>forEach() 方法指定数组的每项元素都执行一次传入的函数，返回值为undefined。</h4><blockquote>
+<p>fn 表示在数组每一项上执行的函数，接受三个参数：</p>
+</blockquote>
+<ul>
+<li>value 当前正在被处理的元素的值</li>
+<li>index 当前元素的数组索引</li>
+<li>array 数组本身</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 3, 5];</span><br><span class="line">let obj = &#123;name:&#x27;cc&#x27;&#125;;</span><br><span class="line">let sReturn = array.forEach(function(value, index, array)&#123;</span><br><span class="line">  array[index] = value * value;</span><br><span class="line">  console.log(this.name);  cc被打印了三次</span><br><span class="line">&#125;,obj);</span><br><span class="line">console.log(array);  [1, 9, 25], 可见原数组改变了</span><br><span class="line">console.log(sReturn);  undefined, 可见返回值为undefined</span><br></pre></td></tr></table></figure>
+
+<h4 id="类数组的使用"><a href="#类数组的使用" class="headerlink" title="类数组的使用"></a>类数组的使用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:1, 1:3, 2:5, length:3&#125;;</span><br><span class="line">Array.prototype.forEach.call(o,function(value, index, obj)&#123;</span><br><span class="line">  console.log(value,index,obj);</span><br><span class="line">  obj[index] = value * value;</span><br><span class="line">&#125;,o);</span><br><span class="line"> 1 0 Object &#123;0: 1, 1: 3, 2: 5, length: 3&#125;</span><br><span class="line"> 3 1 Object &#123;0: 1, 1: 3, 2: 5, length: 3&#125;</span><br><span class="line"> 5 2 Object &#123;0: 1, 1: 9, 2: 5, length: 3&#125;</span><br><span class="line">console.log(o);  Object &#123;0: 1, 1: 9, 2: 25, length: 3&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>forEach无法直接退出循环，只能使用return 来达到for循环中continue的效果，并且forEach不能在低版本IE（6~8）中使用</strong></p>
+<h3 id="every-方法用于检验数组中的每一项是否符合某个条件-若符合则放回true-反之则返回false"><a href="#every-方法用于检验数组中的每一项是否符合某个条件-若符合则放回true-反之则返回false" class="headerlink" title="every() 方法用于检验数组中的每一项是否符合某个条件, 若符合则放回true, 反之则返回false."></a>every() 方法用于检验数组中的每一项是否符合某个条件, 若符合则放回true, 反之则返回false.</h3><h4 id="类数组的引用"><a href="#类数组的引用" class="headerlink" title="类数组的引用"></a>类数组的引用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let o = &#123;0:10, 1:8, 2:25, length:3&#125;;</span><br><span class="line">let bool = Array.prototype.every.call(o,function(value, index, obj)&#123;</span><br><span class="line">  return value &gt;= 8;</span><br><span class="line">&#125;,o);</span><br><span class="line"></span><br><span class="line">console.log(bool);  true</span><br><span class="line"></span><br><span class="line">[12, 5, 8, 130, 44].every(elem =&gt; elem &gt;= 10);</span><br></pre></td></tr></table></figure>
+<h4 id="every-一样不能在低版本IE-6-8-中使用"><a href="#every-一样不能在低版本IE-6-8-中使用" class="headerlink" title="every 一样不能在低版本IE(6~8)中使用"></a>every 一样不能在低版本IE(6~8)中使用</h4><h3 id="some-方法用于检验数组中的每一项是否符合某个条件-若符合则放回false-反之则返回true"><a href="#some-方法用于检验数组中的每一项是否符合某个条件-若符合则放回false-反之则返回true" class="headerlink" title="some() 方法用于检验数组中的每一项是否符合某个条件, 若符合则放回false., 反之则返回true"></a>some() 方法用于检验数组中的每一项是否符合某个条件, 若符合则放回false., 反之则返回true</h3><h3 id="filter-方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。"><a href="#filter-方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。" class="headerlink" title="filter() 方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。"></a>filter() 方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array = [18, 9, 10, 35, 80];</span><br><span class="line">let array2 = array.filter(function(value, index, array)&#123;</span><br><span class="line">  return value &gt; 20;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(array2);  [35, 80]</span><br></pre></td></tr></table></figure>
+
+<p><strong>支持类数组写法</strong></p>
+<h3 id="map-方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。-支持类数组写法"><a href="#map-方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。-支持类数组写法" class="headerlink" title="map() 方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。 支持类数组写法"></a>map() 方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。 支持类数组写法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let array = [1, 4, 9];</span><br><span class="line">let roots = array.map(Math.sqrt);//map包裹方法名</span><br><span class="line"> roots is now [1, 2, 3], array is still [1, 4, 9]</span><br><span class="line">let array = [1, 4, 9];</span><br><span class="line">let doubles = array.map(function(num) &#123;  map包裹方法实体</span><br><span class="line">  return num * 2;</span><br><span class="line">&#125;);</span><br><span class="line"> doubles is now [2, 8, 18]. array is still [1, 4, 9]</span><br></pre></td></tr></table></figure>
+
+<h4 id="map-支持类数组-例如-NodeList"><a href="#map-支持类数组-例如-NodeList" class="headerlink" title="map 支持类数组 例如 NodeList"></a>map 支持类数组 例如 NodeList</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let elems = document.querySelectorAll(&#x27;select option:checked&#x27;);</span><br><span class="line">let values = Array.prototype.map.call(elems, function(obj) &#123;</span><br><span class="line">  return obj.value;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="map-处理字符串"><a href="#map-处理字符串" class="headerlink" title="map 处理字符串"></a>map 处理字符串</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var map = Array.prototype.map;</span><br><span class="line">var array = map.call(&#x27;Hello 中国&#x27;, function(x) &#123; </span><br><span class="line">  return x.charCodeAt(0);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(array);</span><br><span class="line">[72, 101, 108, 108, 111, 32, 20013, 22269]</span><br></pre></td></tr></table></figure>
+<h4 id="将字符串数组转换为数字数组"><a href="#将字符串数组转换为数字数组" class="headerlink" title="将字符串数组转换为数字数组"></a>将字符串数组转换为数字数组</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log([&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;].map(Number)); [1,2,3]</span><br></pre></td></tr></table></figure>
+
+<h4 id="reduce-方法接收一个方法作为累加器，数组中的每个值-从左至右-开始合并，最终为一个值。-支持类数组写法"><a href="#reduce-方法接收一个方法作为累加器，数组中的每个值-从左至右-开始合并，最终为一个值。-支持类数组写法" class="headerlink" title="reduce() 方法接收一个方法作为累加器，数组中的每个值(从左至右) 开始合并，最终为一个值。 支持类数组写法"></a>reduce() 方法接收一个方法作为累加器，数组中的每个值(从左至右) 开始合并，最终为一个值。 支持类数组写法</h4><blockquote>
+<p>previousValue 上一次调用回调返回的值，或者是提供的初始值<br>value 数组中当前被处理元素的值<br>index 当前元素在数组中的索引<br>array 数组自身</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4];</span><br><span class="line">array.reduce((p, v) =&gt; p * v);  24</span><br></pre></td></tr></table></figure>
+
+<h3 id="reduceRight-方法接收一个方法作为累加器，数组中的每个值（从右至左）开始合并，最终为一个值"><a href="#reduceRight-方法接收一个方法作为累加器，数组中的每个值（从右至左）开始合并，最终为一个值" class="headerlink" title="reduceRight() 方法接收一个方法作为累加器，数组中的每个值（从右至左）开始合并，最终为一个值"></a>reduceRight() 方法接收一个方法作为累加器，数组中的每个值（从右至左）开始合并，最终为一个值</h3><h3 id="find-返回数组中第一个满足条件的元素（如果有的话）-1，-如果没有，则返回undefined。-支持类数组写法"><a href="#find-返回数组中第一个满足条件的元素（如果有的话）-1，-如果没有，则返回undefined。-支持类数组写法" class="headerlink" title="find() 返回数组中第一个满足条件的元素（如果有的话）-1， 如果没有，则返回undefined。 支持类数组写法"></a>find() 返回数组中第一个满足条件的元素（如果有的话）-1， 如果没有，则返回undefined。 支持类数组写法</h3><h3 id="findIndex-它返回数组中第一个满足条件的元素的索引（如果有的话）否则返回-1。支持类数组写法"><a href="#findIndex-它返回数组中第一个满足条件的元素的索引（如果有的话）否则返回-1。支持类数组写法" class="headerlink" title="findIndex() 它返回数组中第一个满足条件的元素的索引（如果有的话）否则返回-1。支持类数组写法"></a>findIndex() 它返回数组中第一个满足条件的元素的索引（如果有的话）否则返回-1。支持类数组写法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 3, 5, 7, 8, 9, 10];</span><br><span class="line">function f(value, index, array)&#123;</span><br><span class="line">  return value%2==0;  返回偶数</span><br><span class="line">&#125;</span><br><span class="line">function f2(value, index, array)&#123;</span><br><span class="line">  return value &gt; 20;  返回大于20的数</span><br><span class="line">&#125;</span><br><span class="line">console.log(array.find(f));  8</span><br><span class="line">console.log(array.find(f2));  undefined</span><br><span class="line">console.log(array.findIndex(f));  4</span><br><span class="line">console.log(array.findIndex(f2));  -1</span><br></pre></td></tr></table></figure>
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: 'd0c6de133269f4b5e478',
+    clientSecret: '553bce00ff56a439112749cdde0939a6ebc77d32',
+    repo: 'https://zhangzengjin1213.github.io/',
+    owner: 'zhangzengjin1213',
+    admin: ['zhangzengjin1213'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2019-04 进进的博客 京ICP备1314520号</p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

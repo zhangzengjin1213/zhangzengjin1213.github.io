@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="进进吖" />
+  <meta name="description" content="进进吖的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  <link rel="dns-prefetch" href="https://widget.daovoice.io">
+  <link rel="dns-prefetch" href="https://widget-static-cdn.daovoice.io">
+  <link rel="dns-prefetch" href="https://im.daovoice.io">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>JavaScript-this call、apply、bind</title>
+  
+  
+    <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="进进吖" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">进进吖</a>
+  <a class="face-img" href="/">
+    <img src="https://static.hufangyun.com/face.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    JavaScript-this call、apply、bind
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-07-17T15:52:44.093Z" itemprop="datePublished">2019-07-17</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2019-07-17T17:30:34.852Z" itemprop="dateUpdated">2019-07-18</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p><strong>this永远指向最后调用他的那个对象</strong></p>
+<blockquote>
+<p>一个函数执行前面没有调用他的对象 <strong>this指向的window</strong><br>匿名函数 自执行函数 函数当参数 <strong>默认指向window</strong><br>函数是否在 new中调用 xxx &#x3D; new xxx <strong>this指向的实例</strong><br>元素事件中绑定函数的this是 <strong>绑定的元素</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x27;虽然将a.fn赋值给了变量f,但是没有调用，所以fn()最后仍然是被 window 调用的。</span><br><span class="line">所以 this 指向的也就是 window&#x27; </span><br><span class="line">var name = &quot;windowsName&quot;;</span><br><span class="line">var a = &#123;</span><br><span class="line">    name : null,</span><br><span class="line">    fn : function () &#123;</span><br><span class="line">        console.log(this.name); &#x27;windowsName&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var f = a.fn;</span><br><span class="line">&#x27;变量f == fn这个函数本身&#x27;</span><br><span class="line">f();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a=1</span><br><span class="line">var obj=&#123;</span><br><span class="line">a:2,</span><br><span class="line">getA:function()&#123;return this.a&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.getA());  &#x27;2 (this=&gt;obj)&#x27;</span><br><span class="line">console.log(obj.getA.call());  &#x27;1 (this=&gt;window)&#x27;</span><br><span class="line">console.log(obj.getA.call(&#123;a:10&#125;));  &#x27;10 (this=&gt;&#123;a:10&#125;) window&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>箭头函数中的this</strong></p>
+<ul>
+<li>箭头函数中的没有this指向,也没有arguments</li>
+<li>箭头函数中的this始终指向 <strong>函数定义</strong> 时的this</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;windowsName&quot;;</span><br><span class="line">var a = &#123;</span><br><span class="line">    name : &quot;Cherry&quot;,</span><br><span class="line">    func1: function () &#123;</span><br><span class="line">        console.log(this.name)     </span><br><span class="line">    &#125;,</span><br><span class="line">    func2: function () &#123;</span><br><span class="line">        setTimeout( () =&gt; &#123;</span><br><span class="line">            this.func1()</span><br><span class="line">        &#125;,100);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">a.func2()</span><br></pre></td></tr></table></figure>
+
+<h3 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call apply bind"></a>call apply bind</h3><ul>
+<li>相同点第一个参数都是改变this指向,第一个参数为null&#x2F;undefined&#x2F;为空,默认指向的window<blockquote>
+<p>call 可以接收一个参数列表<br>apply接收的是一个类数组<br>bind需要执行一个()并且返回一个新的函数</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x27;call&#x27;</span><br><span class="line">    var a = &#123;</span><br><span class="line">        name : &quot;Cherry&quot;,</span><br><span class="line">        func1: function () &#123;</span><br><span class="line">            console.log(this.name)</span><br><span class="line">        &#125;,</span><br><span class="line">        func2: function () &#123;</span><br><span class="line">            setTimeout(  function () &#123;</span><br><span class="line">                this.func1()</span><br><span class="line">            &#125;.call(a),100);  &#x27;apply(同理)&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    a.func2()   &#x27;Cherry&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x27;bind 是创建一个新函数,需要执行一下&#x27;</span><br><span class="line">    var a =&#123;</span><br><span class="line">        name : &quot;Cherry&quot;,</span><br><span class="line">        fn : function (a,b) &#123;</span><br><span class="line">            console.log( a + b)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var b = a.fn;</span><br><span class="line">    b.bind(a,1,2)() &#x27;3&#x27;</span><br><span class="line"></span><br><span class="line">&#x27;bind 方法实现&#x27;</span><br><span class="line"> Function.prototype.bind = function(context,...arg)&#123;</span><br><span class="line">     return ()=&gt;&#123;this.apply(context,arg)&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="new-构造函数"><a href="#new-构造函数" class="headerlink" title="new 构造函数"></a>new 构造函数</h3><ul>
+<li>函数调用前使用了new关键字,调用了构造函数,看似创建了新的函数,实际上是函数重新创建了对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function myFunction(arg1, arg2) &#123;</span><br><span class="line">    this.firstName = arg1;</span><br><span class="line">    this.lastName  = arg2;</span><br><span class="line">&#125;</span><br><span class="line">&#x27;This    creates a new object&#x27;</span><br><span class="line">var a = new myFunction(&quot;Li&quot;,&quot;Cherry&quot;);</span><br><span class="line">a.lastName;</span><br></pre></td></tr></table></figure>
+
+<h3 id="new-的原理"><a href="#new-的原理" class="headerlink" title="new 的原理"></a>new 的原理</h3><ul>
+<li>创建一个新的对象</li>
+<li>这个新对象会被执行[原型]连接</li>
+<li>属性和方法都会加入到<strong>this</strong>引用的对象中,并执行构造函数中的方法</li>
+<li>如果函数中没有返回其他对象，那么this就指向了这个新对象<br>否则this就指向了构造函数中返回的对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x27;var obj = new fn()&#x27;</span><br><span class="line">function new(fn)&#123;</span><br><span class="line">    let obj = &#123;&#125;;</span><br><span class="line">    obj.__propo__ = fn.propotype;</span><br><span class="line">    let res = fn.call(obj);</span><br><span class="line">    if (typeof(res)==&#x27;object&#x27; || typeof(res)== &#x27;function&#x27;)&#123;</span><br><span class="line">        return res</span><br><span class="line">    &#125;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line">&#x27;例子&#x27;:</span><br><span class="line">function Student(name, num, age) &#123;</span><br><span class="line">            this.name = name;</span><br><span class="line">            this.num = num;</span><br><span class="line">            this.age = age;</span><br><span class="line">            let obj = &#123;man:&#x27;男&#x27;&#125;;</span><br><span class="line">            &#x27;否则this指向构造函数中返回的对象&#x27;</span><br><span class="line">            return obj;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x27;如果函数没有返回其他对象，那么this指向这个新对象 == s2&#x27;</span><br><span class="line">        var s2 = new Student(&quot;xiaoming&quot;, 54321, 18)</span><br><span class="line">        console.log(s2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过new的方式创建对象和通过字面量创建有什么区别？"><a href="#通过new的方式创建对象和通过字面量创建有什么区别？" class="headerlink" title="通过new的方式创建对象和通过字面量创建有什么区别？"></a>通过new的方式创建对象和通过字面量创建有什么区别？</h3><blockquote>
+<p>字面量创建方式,简介且性能好<br>通过new的方式创建对象、本质上的方法是调用，其实是通过propo进行查找<br>查找过程中必将调用必须的堆栈信息,方法调用后(释放堆栈),造成一定的性能损耗</p>
+</blockquote>
+
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: 'd0c6de133269f4b5e478',
+    clientSecret: '553bce00ff56a439112749cdde0939a6ebc77d32',
+    repo: 'https://zhangzengjin1213.github.io/',
+    owner: 'zhangzengjin1213',
+    admin: ['zhangzengjin1213'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2019-04 进进的博客 京ICP备1314520号</p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
