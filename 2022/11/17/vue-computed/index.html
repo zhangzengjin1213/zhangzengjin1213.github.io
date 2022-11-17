@@ -23,7 +23,7 @@
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="" title="Favicon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-	<title>vue-router(原理解析)</title>
+	<title>computed</title>
   
   
     <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
@@ -44,7 +44,7 @@
     
   
   <h1 class="title">
-    vue-router(原理解析)
+    computed
   </h1>
   
 
@@ -52,11 +52,11 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2020-12-11T06:00:45.257Z" itemprop="datePublished">2020-12-11</time>
+        <time datetime="2022-11-17T15:28:33.769Z" itemprop="datePublished">2022-11-17</time>
       </li>
       <li>
         
-    更新 <time datetime="2022-11-17T15:27:57.144Z" itemprop="dateUpdated">2022-11-17</time>
+    更新 <time datetime="2022-11-17T15:50:19.620Z" itemprop="dateUpdated">2022-11-17</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -68,14 +68,15 @@
     <div class="article">
       <div class="content">
         
-        <h3 id="前端路由实现的两种方式"><a href="#前端路由实现的两种方式" class="headerlink" title="前端路由实现的两种方式"></a>前端路由实现的两种方式</h3><blockquote>
-<p>hash、history<br>目前vue是spa应用，路径切换可以重新渲染组件（也刷新页面）<br>hash的优缺点 样式丑、兼容性好、不需要服务端支持<br>模拟实现方法 window.location.hash &#x3D; ‘xx’、 事件监听方法是 window.addEventListener(hashchang);<br>history的优缺点 样式美观、兼容性差、需要服务端支持<br>模拟实现方法 window.history.pushState({数据},’标题’,’路径’)  事件监听方法是 window.addEventListener(‘popState’);</p>
+        <h3 id="vue引入（个人理解）"><a href="#vue引入（个人理解）" class="headerlink" title="vue引入（个人理解）"></a>vue引入（个人理解）</h3><blockquote>
+<p>初始化项目完成后，会将vue引入到main.js中，vue初始化时会执行一个init方法<br>init方法里面会调用初始化initData、initComputed等方法并将他们挂载到vue实例上</p>
 </blockquote>
-<h3 id="Vue-use-是什么？干了那些事情？"><a href="#Vue-use-是什么？干了那些事情？" class="headerlink" title="Vue.use()是什么？干了那些事情？"></a>Vue.use()是什么？干了那些事情？</h3><blockquote>
-<p>Vue.use(vueRouter);<br>plugin 插件<br>options 参数<br>this 指向的是当前的 Vue</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.use = function(plugin,options)&#123; </span><br><span class="line">    plugin.install(this,options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">export default function Vue(options) &#123;</span><br><span class="line">	this._init(options)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Vue.prototype._init = function(options) &#123;</span><br><span class="line"></span><br><span class="line">	this.$options = options</span><br><span class="line"></span><br><span class="line">	initData(this)</span><br><span class="line">	// 初始化计算属性 并将计算属性代理到 vue 实例上</span><br><span class="line">	initComputed(this)</span><br><span class="line"></span><br><span class="line">	if (this.$options.el) &#123;</span><br><span class="line">		this.$mount()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Vue.prototype.mount = function() &#123;</span><br><span class="line">	mount()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h3 id="initComputed-实现"><a href="#initComputed-实现" class="headerlink" title="initComputed 实现"></a>initComputed 实现</h3><blockquote>
+<p>1、初始化 computed 配置项<br>2、为每一个计算属性 <em>实例化</em> 一个 <strong>Watcher</strong>，并将计算属性代理到 <strong>Vue</strong> 实例上<br>3、通过 <strong>Watcher.dirty</strong> 和 <strong>Watcher.evalute</strong> 实现<em>更新</em>和<em>缓存</em></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
