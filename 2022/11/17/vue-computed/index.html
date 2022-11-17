@@ -23,7 +23,7 @@
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="" title="Favicon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-	<title>computed</title>
+	<title>vue-computed 原理解析</title>
   
   
     <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
@@ -44,7 +44,7 @@
     
   
   <h1 class="title">
-    computed
+    vue-computed 原理解析
   </h1>
   
 
@@ -56,7 +56,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-11-17T16:13:54.180Z" itemprop="dateUpdated">2022-11-18</time>
+    更新 <time datetime="2022-11-17T16:16:23.064Z" itemprop="dateUpdated">2022-11-18</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -81,7 +81,7 @@
 <blockquote>
 <p>1、获取配置项<br>2、记录 watcher<br>3、遍历 computed 配置项<br>4、实例化 watcher 回调函数默认懒执行<br>5、将 computed 的属性 key 挂载到 vue 实例上<br>6、通过 defineComputed 实现 computed的缓存和更新<br>7、缓存控制是通过 <strong>watcher.dirty</strong> 控制的，<strong>watcher.evaluate</strong>用来重新计算，更新缓存值，并重置dirty为false,表示缓存已更新</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">export default function initComputed(vm) &#123;</span><br><span class="line">	const computed = vm.$options.computed</span><br><span class="line">	const watcher = (vm._watcher = Object.create(null))</span><br><span class="line"></span><br><span class="line">	for (let key in computed) &#123;</span><br><span class="line">		watcher[key] = new watcher(vm, computed[key], &#123; lazy: true &#125;)</span><br><span class="line"></span><br><span class="line">		defineComputed(vm, key)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function defineComputed(vm, key) &#123;</span><br><span class="line">		const descriptors = &#123;</span><br><span class="line">			get: function() &#123;</span><br><span class="line">				const watcher = vm._watcher[key]</span><br><span class="line">				if (watcher.dirty) &#123;</span><br><span class="line">					watcher.evalute()</span><br><span class="line">				&#125;</span><br><span class="line">				return watcher.value</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		Object.defineProperty(vm, key, descriptors)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">export default function initComputed(vm) &#123;</span><br><span class="line">	const computed = vm.$options.computed</span><br><span class="line">	const watcher = vm._watcher = Object.create(null)</span><br><span class="line"></span><br><span class="line">	for (let key in computed) &#123;</span><br><span class="line">		watcher[key] = new watcher(vm, computed[key], &#123; lazy: true &#125;)</span><br><span class="line"></span><br><span class="line">		defineComputed(vm, key)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function defineComputed(vm, key) &#123;</span><br><span class="line">		const descriptors = &#123;</span><br><span class="line">			get: function() &#123;</span><br><span class="line">				const watcher = vm._watcher[key]</span><br><span class="line">				if (watcher.dirty) &#123;</span><br><span class="line">					watcher.evalute()</span><br><span class="line">				&#125;</span><br><span class="line">				return watcher.value</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		Object.defineProperty(vm, key, descriptors)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
