@@ -56,7 +56,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-11-23T09:01:47.993Z" itemprop="dateUpdated">2022-11-23</time>
+    更新 <time datetime="2022-11-23T13:29:57.096Z" itemprop="dateUpdated">2022-11-23</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -68,7 +68,40 @@
     <div class="article">
       <div class="content">
         
-        
+        <h3 id="ts与js的区别"><a href="#ts与js的区别" class="headerlink" title="ts与js的区别"></a>ts与js的区别</h3><blockquote>
+<p>1、<em>ts</em> 可以在编译过程中发现错误，而 <em>js</em> 只能在运行阶段发现错误<br>2、<em>ts</em> 类型为强类型、静态、动态类型、<em>js</em> 为弱类型<br>3、<em>ts</em> 最终会编译成js, <em>js</em> 则直接可以在浏览器中运行<br>4、<em>ts</em> 支持<em>泛型</em>、<em>模块</em>、<em>接口</em></p>
+</blockquote>
+<h3 id="①、ts-中的基础类型"><a href="#①、ts-中的基础类型" class="headerlink" title="①、ts 中的基础类型"></a>①、ts 中的基础类型</h3><blockquote>
+<p>Boolean 、Number 、String 、Symbol 、Array 、Enum<br><em>数组</em>为两种展现形式<br><em>数字枚举</em> 初始值为0，当然也可以设置初始值<br>如下为提供的案例</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let isDone: boolean = false;</span><br><span class="line">ES5：var isDone = false;</span><br><span class="line"></span><br><span class="line">const sym = Symbol();</span><br><span class="line">let obj = &#123;</span><br><span class="line">  [sym]: &quot;zzj&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let list: number[] = [1, 2, 3];</span><br><span class="line">ES5：var list = [1,2,3];</span><br><span class="line"></span><br><span class="line">let list: Array&lt;number&gt; = [1, 2, 3]; </span><br><span class="line">Array&lt;number&gt;泛型语法</span><br><span class="line">ES5：var list = [1,2,3];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Any、Unknown、never"><a href="#Any、Unknown、never" class="headerlink" title="Any、Unknown、never"></a>Any、Unknown、never</h4><blockquote>
+<p>在 <em>ts</em> 中 任何类型都可以为any类型，它是 <em>ts</em> 中的一个 “逃逸舱” 至此any也被称为顶级类型<br>所有的类型都可以赋值给any,所有类型也都可以赋值给 <em>unknown</em><br><em>unknown 类型</em> 只能被赋值给 <em>any</em> 类型和 <em>unknown</em> 类型本身<br><em>never类型</em> 表示的是那些永不存在的值的类型。<br><em>没有类型是 never 的子类型</em>，没有类型可以赋值给 never 类型（<em>除了 never 本身之外</em>）。 即使 <em>any</em>也不可以赋值给 never 。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let value: any;</span><br><span class="line"></span><br><span class="line">value.foo.bar;</span><br><span class="line">value.trim();</span><br><span class="line">value(); </span><br><span class="line">new value();</span><br><span class="line">value[0][1]; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let value: unknown;</span><br><span class="line"></span><br><span class="line">value = true;</span><br><span class="line">value = 42;</span><br><span class="line">value = &quot;Hello World&quot;;</span><br><span class="line">value = []; </span><br><span class="line">value = &#123;&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Tuple-类型"><a href="#Tuple-类型" class="headerlink" title="Tuple 类型"></a>Tuple 类型</h4><blockquote>
+<p>数组中的值可以为多种类型或相同类型</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let tupleType: [string, boolean];</span><br><span class="line"></span><br><span class="line">tupleType = [&quot;semlinker&quot;, true];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="undefined-、-null"><a href="#undefined-、-null" class="headerlink" title="undefined 、 null"></a>undefined 、 null</h4><blockquote>
+<p>默认情况下 <em>null</em> 和 <em>undefined</em> 是所有类型的子类型</p>
+</blockquote>
+<h3 id="②、函数类型"><a href="#②、函数类型" class="headerlink" title="②、函数类型"></a>②、函数类型</h3><blockquote>
+<p>函数的类型实际上指的是：函数参数和返回值的类型<br>函数指定类型的两种方式<br>  1、单独指定参数、返回值的类型<br>  2、同时指定参数、返回值的类型<br>以下案例为：函数声明、箭头函数</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function add(num1: number, num2: number): number &#123;</span><br><span class="line">  return num1 + num2</span><br><span class="line">&#125;</span><br><span class="line">​</span><br><span class="line">const add = (num1: number, num2: number): number =&gt; &#123;</span><br><span class="line">  return num1 + num2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type AddFn = (num1: number, num2: number) =&gt; number</span><br><span class="line">​</span><br><span class="line">const add: AddFn = (num1, num2) =&gt; &#123;</span><br><span class="line">  return num1 + num2</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="void-类型"><a href="#void-类型" class="headerlink" title="void 类型"></a>void 类型</h4><blockquote>
+<p>如果函数没有返回值，那么，函数返回值类型为：<em>void</em><br>声明一个 void 类型的变量没有什么作用，因为在<em>严格模式</em>下，它的值只能为 <em>undefined</em>：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function greet(name: string): void &#123;</span><br><span class="line">  console.log(&#x27;Hello&#x27;, name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let unusable: void = undefined;</span><br></pre></td></tr></table></figure>
+
+<h3 id="TypeScript-断言"><a href="#TypeScript-断言" class="headerlink" title="TypeScript 断言"></a>TypeScript 断言</h3>
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
