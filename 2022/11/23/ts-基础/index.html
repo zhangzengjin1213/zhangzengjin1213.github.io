@@ -56,7 +56,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-11-23T13:29:57.096Z" itemprop="dateUpdated">2022-11-23</time>
+    更新 <time datetime="2022-11-23T13:51:16.654Z" itemprop="dateUpdated">2022-11-23</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -101,7 +101,26 @@
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function greet(name: string): void &#123;</span><br><span class="line">  console.log(&#x27;Hello&#x27;, name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let unusable: void = undefined;</span><br></pre></td></tr></table></figure>
 
-<h3 id="TypeScript-断言"><a href="#TypeScript-断言" class="headerlink" title="TypeScript 断言"></a>TypeScript 断言</h3>
+<h3 id="TypeScript-断言"><a href="#TypeScript-断言" class="headerlink" title="TypeScript 断言"></a>TypeScript 断言</h3><h4 id="1、类型断言"><a href="#1、类型断言" class="headerlink" title="1、类型断言"></a>1、类型断言</h4><blockquote>
+<p>1、类型断言有两种形式：“尖括号” 语法、as 语法</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let someValue: any = &quot;this is a string&quot;;</span><br><span class="line"></span><br><span class="line">let strLength: number = (&lt;string&gt;someValue).length;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let someValue: any = &quot;this is a string&quot;;</span><br><span class="line"></span><br><span class="line">let strLength: number = (someValue as string).length;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、非空断言"><a href="#2、非空断言" class="headerlink" title="2、非空断言"></a>2、非空断言</h4><blockquote>
+<p>在上下文中当类型检查器无法断定类型时，一个新的后缀表达式操作符 ! 可以用于断言操作对象是非 null 和非 undefined 类型<br>x! 将从 x 值域中排除 null 和 undefined</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function myFunc(maybeString: string | undefined | null) &#123;</span><br><span class="line">  const ignoreUndefinedAndNull: string = maybeString!;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type NumGenerator = () =&gt; number;</span><br><span class="line"></span><br><span class="line">function myFunc(numGenerator: NumGenerator | undefined) &#123;</span><br><span class="line">  const num1 = numGenerator();</span><br><span class="line">  const num2 = numGenerator!();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="3、确定赋值断言"><a href="#3、确定赋值断言" class="headerlink" title="3、确定赋值断言"></a>3、确定赋值断言</h4><blockquote>
+<p>1、允许在实例属性和变量声明后面放置一个 ! 号，从而告诉 TypeScript 该属性会被明确地赋值。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let x!: number;</span><br><span class="line"></span><br><span class="line">initialize();</span><br><span class="line"></span><br><span class="line">console.log(2 * x);</span><br><span class="line"></span><br><span class="line">function initialize() &#123;</span><br><span class="line">  x = 10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="类型守卫"><a href="#类型守卫" class="headerlink" title="类型守卫"></a>类型守卫</h4><blockquote>
+<p>类型保护是可执行运行时检查的一种表达式，用于确保该类型在一定的范围内。</p>
+</blockquote>
+
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
