@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-11-17T16:19:13.755Z</updated>
+  <updated>2022-11-23T09:01:47.993Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ts-基础</title>
+    <link href="http://yoursite.com/2022/11/23/ts-%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2022/11/23/ts-%E5%9F%BA%E7%A1%80/</id>
+    <published>2022-11-23T09:01:31.845Z</published>
+    <updated>2022-11-23T09:01:47.993Z</updated>
+    
+    
+    
+    
+    <category term="ts" scheme="http://yoursite.com/categories/ts/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>vue-computed 原理解析</title>
