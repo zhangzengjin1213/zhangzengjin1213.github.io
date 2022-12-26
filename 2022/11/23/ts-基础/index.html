@@ -56,7 +56,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-11-24T11:51:04.280Z" itemprop="dateUpdated">2022-11-24</time>
+    更新 <time datetime="2022-12-26T07:23:52.584Z" itemprop="dateUpdated">2022-12-26</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -154,7 +154,30 @@
 
 <h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class GenericNumber&lt;T&gt; &#123;</span><br><span class="line">  zeroValue: T;</span><br><span class="line">  add: (x: T, y: T) =&gt; T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let myGenericNumber = new GenericNumber&lt;number&gt;();</span><br><span class="line"></span><br><span class="line">myGenericNumber.zeroValue = 0;</span><br><span class="line"></span><br><span class="line">myGenericNumber.add = function (x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="泛型工具类型"><a href="#泛型工具类型" class="headerlink" title="泛型工具类型"></a>泛型工具类型</h4>
+<h4 id="泛型工具类型"><a href="#泛型工具类型" class="headerlink" title="泛型工具类型"></a>泛型工具类型</h4><h5 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h5><blockquote>
+<p>typeof 操作符可以用来获取一个变量声明或对象的类型。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const sem: Person = &#123; name: &#x27;semlinker&#x27;, age: 33 &#125;;</span><br><span class="line">type Sem= typeof sem; // -&gt; Person</span><br><span class="line"></span><br><span class="line">function toArray(x: number): Array&lt;number&gt; &#123;</span><br><span class="line">  return [x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Func = typeof toArray; // -&gt; (x: number) =&gt; number[]</span><br></pre></td></tr></table></figure>
+
+<h5 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h5><blockquote>
+<p>keyof 返回值为联合类型</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type K1 = keyof Person; // &quot;name&quot; | &quot;age&quot;</span><br><span class="line">type K2 = keyof Person[]; // &quot;length&quot; | &quot;toString&quot; | &quot;pop&quot; | &quot;push&quot; | &quot;concat&quot; | &quot;join&quot; </span><br><span class="line">type K3 = keyof &#123; [x: string]: Person &#125;;  // string | number</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="in"><a href="#in" class="headerlink" title="in"></a>in</h5><blockquote>
+<p>用来遍历枚举类型：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type Keys = &quot;a&quot; | &quot;b&quot; | &quot;c&quot;</span><br><span class="line"></span><br><span class="line">type Obj =  &#123;</span><br><span class="line">  [p in Keys]: any</span><br><span class="line">&#125; // -&gt; &#123; a: any, b: any, c: any &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h5><blockquote>
+<p>判断语句</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type ReturnType&lt;T&gt; = T extends (</span><br><span class="line">  ...args: any[]</span><br><span class="line">) =&gt; infer R ? R : any;</span><br></pre></td></tr></table></figure>
+
+<h5 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h5><blockquote>
+<p>继承</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface Lengthwise &#123;</span><br><span class="line">  length: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</span><br><span class="line">  console.log(arg.length);</span><br><span class="line">  return arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
