@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="进进吖" />
+  <meta name="description" content="进进吖的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  <link rel="dns-prefetch" href="https://widget.daovoice.io">
+  <link rel="dns-prefetch" href="https://widget-static-cdn.daovoice.io">
+  <link rel="dns-prefetch" href="https://im.daovoice.io">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>vue3基础</title>
+  
+  
+    <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/7b3bba3c.js","daovoice");daovoice('init',{app_id: "7b3bba3c"});daovoice('update');
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="进进吖" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">进进吖</a>
+  <a class="face-img" href="/">
+    <img src="https://static.hufangyun.com/face.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    vue3基础
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2022-12-27T06:44:25.653Z" itemprop="datePublished">2022-12-27</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2022-12-27T08:04:12.788Z" itemprop="dateUpdated">2022-12-27</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h3 id="父子组件数据传递"><a href="#父子组件数据传递" class="headerlink" title="父子组件数据传递"></a>父子组件数据传递</h3><h5 id="父组件数据传递到子组件"><a href="#父组件数据传递到子组件" class="headerlink" title="父组件数据传递到子组件"></a>父组件数据传递到子组件</h5><blockquote>
+<p>1、如果项目中使用了setup <strong>props</strong> 需要 <strong>defineProps()</strong> 这个宏函数来进行声明<br>2、如果项目中未使用setup 则需要将 <strong>defineProps()</strong> 进行引入<br>3、defineProps 、defineEmits 、 defineExpose 和 withDefaults 这四个宏函数只能在<br>4、**<script setup>** 中使用。他们不需要导入，会随着 <strong><script setup></strong> 的处理过程中一起被编译。</p>
+</blockquote>
+<blockquote>
+<p>父组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ChildView from &#x27;./ChildView.vue&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ChildView some-prop=&quot;parent message&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>子组件<br>打印结果为：parent message</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">const props = defineProps(&#123;</span><br><span class="line">  someProp: &#123;</span><br><span class="line">    type: String,</span><br><span class="line">    required: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(props.someProp)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!-- 使用 someProp 或 props.someProp --&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123; someProp &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123; props.someProp &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="子组件数据传递到父组件"><a href="#子组件数据传递到父组件" class="headerlink" title="子组件数据传递到父组件"></a>子组件数据传递到父组件</h5><blockquote>
+<p>Vue2 中子组件数据传递到父组件，通常是使用 $emit 触发一个自定义事件来进行传递。但 $emit 无法在 </p>
+<script setup> 中使用，这时候我们需要使用 **defineEmits()**：
+</blockquote>
+<blockquote>
+<p>子组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">const emit = defineEmits([&#x27;someEvent&#x27;])</span><br><span class="line">function onClick() &#123;</span><br><span class="line">  emit(&#x27;someEvent&#x27;, &#x27;child message&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;onClick&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>父组件<br>打印结果为 child message</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ChildView from &#x27;./ChildView.vue&#x27;</span><br><span class="line"></span><br><span class="line">function someEvent(value) &#123;</span><br><span class="line">  console.log(value)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ChildView @some-event=&quot;someEvent&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="父组件使用子组件数据"><a href="#父组件使用子组件数据" class="headerlink" title="父组件使用子组件数据"></a>父组件使用子组件数据</h5><blockquote>
+<p>在 <script setup> 中、组件的属性和方法默认都是私有的<br>使用 <strong>defineExpose()</strong> 将属性和方法暴露出去</p>
+</blockquote>
+<blockquote>
+<p>子组件  属性或方法必须暴露出去，父组件才能使用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const msg = ref(&#x27;hello vue3!&#x27;)</span><br><span class="line"></span><br><span class="line">function change() &#123;</span><br><span class="line">  msg.value = &#x27;hi vue3!&#x27;</span><br><span class="line">  console.log(msg.value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">defineExpose(&#123; msg, change &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>父组件<br>打印结果为 hello vue3!、hi vue3!</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ChildView from &#x27;./ChildView.vue&#x27;</span><br><span class="line">import &#123; ref, onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const child = ref(null)</span><br><span class="line">onMounted(() =&gt; &#123;</span><br><span class="line">  console.log(child.value.msg)</span><br><span class="line">  child.value.change()</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ChildView ref=&quot;child&quot;&gt;&lt;/ChildView&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="组件之间双向绑定"><a href="#组件之间双向绑定" class="headerlink" title="组件之间双向绑定"></a>组件之间双向绑定</h3><blockquote>
+<p>1、vue2 中组件的双向绑定采用的是 v-model 或 .snyc 修饰符<br>2、vue3 统一使用 v-model 进行处理，并且可以和多个数据进行绑定，如 v-model:foo、v-model:bar。<br>3、v-model 等价于 :model-value="someValue" 和 @update:model-value="someValue = $event"<br>4、v-model:foo 等价于 :foo="someValue" 和 @update:foo="someValue = $event"</p>
+</blockquote>
+<blockquote>
+<p>父组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ChildView from &#x27;./ChildView.vue&#x27;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const msg = ref(&#x27;hello vue3!&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ChildView v-model=&quot;msg&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>子组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">defineProps([&#x27;modelValue&#x27;])</span><br><span class="line">const emit = defineEmits([&#x27;update:modelValue&#x27;])</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div @click=&quot;emit(&#x27;update:modelValue&#x27;, &#x27;hi vue3！&#x27;)&quot;&gt;&#123;&#123; modelValue &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>子组件可以结合 <em>input</em> 使用：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">defineProps([&#x27;modelValue&#x27;])</span><br><span class="line">const emit = defineEmits([&#x27;update:modelValue&#x27;])</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;input :value=&quot;modelValue&quot; @input=&quot;emit(&#x27;update:modelValue&#x27;, $event.target.value)&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>子组件 结合 <strong>computed</strong> 使用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; computed &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const props = defineProps([&#x27;modelValue&#x27;])</span><br><span class="line">const emit = defineEmits([&#x27;update:modelValue&#x27;])</span><br><span class="line">const newValue = computed(&#123;</span><br><span class="line">  get() &#123;</span><br><span class="line">    return props.modelValue</span><br><span class="line">  &#125;,</span><br><span class="line">  set(value) &#123;</span><br><span class="line">    emit(&#x27;update:modelValue&#x27;, value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;input v-model=&quot;newValue&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="路由跳转，获取路由参数"><a href="#路由跳转，获取路由参数" class="headerlink" title="路由跳转，获取路由参数"></a>路由跳转，获取路由参数</h3><blockquote>
+<p>vue2 中使用 <strong>this.$router</strong> 或 <strong>this.$route</strong> 来进行<em>路由的跳转</em>和<em>参数获取</em><br>在 <strong><script-setup></strong> 中需要引入 <em>useRouter</em> 和 <em>useRoute</em> 来进行使用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; useRouter &#125; from &#x27;vue-router&#x27;</span><br><span class="line"></span><br><span class="line">const router = useRouter()</span><br><span class="line">function onClick() &#123;</span><br><span class="line">  router.push(&#123;</span><br><span class="line">    path: &#x27;/about&#x27;,</span><br><span class="line">    query: &#123;</span><br><span class="line">      msg: &#x27;hello vue3!&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>获取路由参数时，可以使用 vue-router 提供的 useRoute方法：</p>
+</blockquote>
+<blockquote>
+<p>log 为: hello vue3!</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; useRoute &#125; from &#x27;vue-router&#x27;</span><br><span class="line"></span><br><span class="line">const route = useRoute()</span><br><span class="line">console.log(route.query.msg)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取上下文对象"><a href="#获取上下文对象" class="headerlink" title="获取上下文对象"></a>获取上下文对象</h3><blockquote>
+<p>vue3 的 <strong>setup</strong> 中无法使用 <em>this</em> 这个上下文对象<br>通过 <em>getCurrentInstance</em> 方法获取上下文对象：<br>以下两种方法都可以获取到上下文对象<br><em>ctx</em> 只能在<em>开发环境</em>使用，<em>生成环境</em>为 <em>undefined</em> 。<br>推荐使用 <em>proxy</em> ，在<em>开发环境</em>和<em>生产环境</em>都可以使用。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; getCurrentInstance &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const &#123; ctx &#125; = getCurrentInstance()</span><br><span class="line">const &#123; proxy &#125;  = getCurrentInstance()</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="插槽的使用"><a href="#插槽的使用" class="headerlink" title="插槽的使用"></a>插槽的使用</h3><blockquote>
+<p>vue2中 一般是通过 slot 属性指定模板的位置，通过 slot-scope 获取作用域插槽的数据，如：</p>
+</blockquote>
+<blockquote>
+<p>父组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ChildView from &#x27;./ChildView.vue&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;parent&lt;div&gt;</span><br><span class="line">  &lt;ChildView&gt;</span><br><span class="line">    &lt;template slot=&quot;content&quot; slot-scope=&quot;&#123; msg &#125;&quot;&gt;</span><br><span class="line">      &lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/ChildView&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>子组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;child&lt;/div&gt;</span><br><span class="line">  &lt;slot name=&quot;content&quot; msg=&quot;hello vue3!&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>vue3中则是通过 v-slot 这个指令来指定模板的位置，同时获取作用域插槽的数据，如：</p>
+</blockquote>
+<blockquote>
+<p>父组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ChildView from &#x27;./ChildView.vue&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;parent&lt;/div&gt;</span><br><span class="line">  &lt;ChildView&gt;</span><br><span class="line">    &lt;template v-slot:content=&quot;&#123; msg &#125;&quot;&gt;</span><br><span class="line">      &lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/ChildView&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- ChildView 也可以简写为： --&gt;</span><br><span class="line">&lt;ChildView&gt;</span><br><span class="line">  &lt;template #content=&quot;&#123; msg &#125;&quot;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/ChildView&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>子组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;child&lt;/div&gt;</span><br><span class="line">  &lt;slot name=&quot;content&quot; msg=&quot;hello vue3!&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="缓存路由组件"><a href="#缓存路由组件" class="headerlink" title="缓存路由组件"></a>缓存路由组件</h3><blockquote>
+<p>vue2 和 vue3的用法是一样的 都是使用 <em>KeepAlive</em> 包裹 <em>Component</em><br>vue3中缓存路由组件需要和插槽一起使用</p>
+</blockquote>
+<blockquote>
+<p>vue2 中缓存路由组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;KeepAlive&gt;</span><br><span class="line">  &lt;RouterView /&gt;</span><br><span class="line">&lt;/KeepAlive&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>vue3 中缓存路由组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;RouterView v-slot=&quot;&#123; Component &#125;&quot;&gt;</span><br><span class="line">  &lt;KeepAlive&gt;</span><br><span class="line">    &lt;Component :is=&quot;Component&quot;&gt;&lt;/Component&gt;</span><br><span class="line">  &lt;/KeepAlive&gt;</span><br><span class="line">&lt;/RouterView&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一个持续存在的组件可以通过 <em>onActivated()</em> 和 <em>onDeactivated()</em> 两个生命周期钩子注入相应的逻辑<br><em>onActivated()</em>  调用时机为首次挂载、以及每次从缓存中被重新插入时<br><em>onDeactivated</em>  调用时机为从 DOM 上移除、进入缓存、以及组件卸载时</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; onActivated, onDeactivated &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">onActivated(() =&gt; &#123;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">onDeactivated(() =&gt; &#123;</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><blockquote>
+<p>vue3 生命周期钩子都以 <em>on</em> 开头，并且需要在组件中手动导入。<br>vue3 取消了 <em>beforeCreate</em> 和 <em>created</em> 钩子。如果需要在组件创建前注入逻辑，直接在 <script setup><br>中编写同步代码就可以了。如果这几个钩子同时存在，<em>setup</em> 的执行顺序要<em>优先</em>于 <em>beforeCreate</em> 和 <em>created</em>。<br>vue3 中组件卸载的钩子名称有变化，<em>beforeDestroy</em> 改为 <em>onBeforeUnmount</em>，<em>destroyed</em> 改为 <em>onUnmounted</em>。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">onMounted(() =&gt; &#123;</span><br><span class="line">  console.log(&#x27;onMounted&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局-API"><a href="#全局-API" class="headerlink" title="全局 API"></a>全局 API</h3><blockquote>
+<p>vue2中 <em>Vue.prototype.$axios = axios</em><br>vue3中 需要在app实例上添加 <em>app.config.globalProperties.$axios = axios</em></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; getCurrentInstance &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const &#123; proxy &#125; = getCurrentInstance()</span><br><span class="line">proxy.$axios.get(&#x27;http://...&#x27;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Vue3 中其他的全局 API，如 <em>directive</em> 、<em>component</em> 等，跟 Vue2 的用法都差不多，只不过一个是在 Vue 上调用，一个是在 <em>app</em> 实例上调用：</p>
+</blockquote>
+<blockquote>
+<p>全局自定义指令/全局自定义组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.directive(&#x27;focus&#x27;, &#123;</span><br><span class="line">  mounted(el) &#123;</span><br><span class="line">    el.focus()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import CustomComp from &#x27;./components/CustomComp.vue&#x27;</span><br><span class="line"></span><br><span class="line">app.component(&#x27;CustomComp&#x27;, CustomComp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="与-TypeScript-结合使用"><a href="#与-TypeScript-结合使用" class="headerlink" title="与 TypeScript 结合使用"></a>与 TypeScript 结合使用</h3><h5 id="为-props-标注类型"><a href="#为-props-标注类型" class="headerlink" title="为 props 标注类型"></a>为 props 标注类型</h5><blockquote>
+<p>运行时声明。当使用 <script setup> 时，<strong>defineProps()</strong> 宏函数支持从它的参数中推导类型：<br>打印为：string、number | undefined</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">const props = defineProps(&#123;</span><br><span class="line">  foo: &#123; type: String, required: true &#125;,</span><br><span class="line">  bar: Number</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">props.foo </span><br><span class="line">props.bar</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这被称为 <em>运行时声明</em> ，因为传递给 <em>defineProps()</em> 的参数会作为运行时的 <em>props</em> 选项使用。<br><em>基于类型的声明</em> 我们还可以通过泛型参数来定义 props 的类型，这种方式更加常用：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">interface Props &#123;</span><br><span class="line">  foo: string</span><br><span class="line">  bar?: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const props = defineProps&lt;Props&gt;()</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这被称为 <em>基于类型的声明</em> ，编译器会尽可能地尝试根据类型参数推导出等价的运行时选项。这种方式的不足之处在于，失去了定义 props 默认值的能力。为了解决这个问题，我们可以使用 <em>withDefaults</em> 宏函数：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">interface Props &#123;</span><br><span class="line">  msg?: string</span><br><span class="line">  labels?: string[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const props = withDefaults(defineProps&lt;Props&gt;(), &#123;</span><br><span class="line">  msg: &#x27;hello vue3!&#x27;,</span><br><span class="line">  labels: () =&gt; [&#x27;one&#x27;, &#x27;two&#x27;]</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: 'd0c6de133269f4b5e478',
+    clientSecret: '553bce00ff56a439112749cdde0939a6ebc77d32',
+    repo: 'https://zhangzengjin1213.github.io/',
+    owner: 'zhangzengjin1213',
+    admin: ['zhangzengjin1213'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2019-04 进进的博客 京ICP备1314520号</p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
